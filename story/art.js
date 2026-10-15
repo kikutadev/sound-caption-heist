@@ -129,6 +129,13 @@ function fx(type){
   g+=bubble(270,271,"カン！")+bubble(716,260,"カン！");
   g+=path("M384 249 Q494 170 603 240","#f4d7a4",5,{"stroke-dasharray":"9 12"})+text(494,199,"× 2",30);
  }
+ if(type==="attach"){
+   g+=rect(496,368,218,65,"#98744f",{rx:6,stroke:"#d7b186","stroke-width":4});
+   g+=circ(540,441,25,"#293b45",{stroke:"#c29e74","stroke-width":6})+circ(684,441,25,"#293b45",{stroke:"#c29e74","stroke-width":6});
+   g+=path("M484 350 Q610 302 749 352","#ffdd9f",4,{"stroke-dasharray":"8 10"});
+   g+=bubble(612,342,"ガラガラ");
+   g+=text(614,256,"荷車に貼る → 文字も走る",21);
+ }
  if(type==="correct"){
   g+=bubble(630,277,"ドーン！");
   g+=tag("g",{transform:"translate(676 300) rotate(-16)"},rect(-78,-32,156,64,"#963c41dd",{rx:3,stroke:"#ffdfc8","stroke-width":4})+text(0,10,"訂 正",31,"#fff0d9"));

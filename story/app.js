@@ -1,4 +1,4 @@
-import { abilities, chapters, scenes, chapterStart, stageStart } from "./scenes.js";
+import { abilities, chapters, scenes, chapterStart, stageStart, recaps } from "./scenes.js";
 import { illustration } from "./art.js";
 const $=id=>document.getElementById(id);
 const avatars={"トト":"toto","ミオ":"mio","エマ":"emma","クララ":"clara","アーデル":"adel","ナディア":"nadia","巡回員":"guard","救助員":"rescuer","作業員":"worker"};
@@ -13,13 +13,14 @@ for(let i=0;i<chapters.length;i++){
  button.addEventListener("click",()=>go(chapterStart[i]));
  chaptersNav.appendChild(button);
 }
-for(let i=0;i<10;i++){
+for(let i=0;i<stageStart.length;i++){
  const option=document.createElement("option");
  option.value=String(i);
  option.textContent="STAGE "+String(i+1).padStart(2,"0")+" "+scenes[stageStart[i]].name;
  $("stage-select").appendChild(option);
 }
 $("stage-select").addEventListener("change",e=>go(stageStart[Number(e.target.value)]));
+$("recap-toggle").addEventListener("click",()=>{const open=$("recap-panel").hidden;$("recap-panel").hidden=!open;$("recap-toggle").setAttribute("aria-expanded",String(open));});
 $("prev").addEventListener("click",()=>go(index-1));
 $("next").addEventListener("click",()=>go(index===scenes.length-1?0:index+1));
 $("ability-details").addEventListener("click",()=>{
@@ -65,6 +66,7 @@ function render(){
  $("scene-title").textContent=scene.name;
  $("scene-lead").textContent=scene.intro;
  $("gameplay").textContent=scene.play;
+ $("lab-link").hidden=scene.stage!==4;
  $("artwork").setAttribute("data-scene",scene.art);
  $("artwork").setAttribute("data-effect",scene.effect);
  const ability=abilities.find(item=>item.key===scene.ability)||abilities[0];
@@ -93,6 +95,8 @@ function render(){
  for(let i=0;i<chaptersNav.children.length;i++){
   const b=chaptersNav.children[i];b.setAttribute("aria-current",i===scene.ch?"step":"false");
  }
+ $("recap-lines").replaceChildren();
+ for(const sentence of recaps[scene.stage-1]){const item=document.createElement("p");item.textContent=sentence;$("recap-lines").appendChild(item);}
  $("stage-select").value=String(scene.stage-1);
  $("page-count").textContent=(index+1)+" / "+scenes.length;
  $("progress-fill").style.width=(100*(index+1)/scenes.length)+"%";

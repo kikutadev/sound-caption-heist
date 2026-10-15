@@ -1,0 +1,30 @@
+<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#142e38"><title>字幕操作ラボ｜音字泥棒</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%231b3a44'/%3E%3Ctext x='24' y='34' text-anchor='middle' font-size='28'%3E%E9%9F%B3%3C/text%3E%3C/svg%3E"/>
+<style>
+:root{color-scheme:dark;font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;background:#091e27;color:#ecf0e8}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(#234454,#091e27);min-height:100vh}
+main{max-width:1030px;padding:22px;margin:auto}
+nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+a{color:#efce97}nav a{font-size:13px}
+h1{margin:28px 0 5px;font-size:clamp(23px,4vw,38px);color:#f4d7a7}
+.lead{font-size:14px;color:#c2d7d7;line-height:1.75;margin:4px 0 20px}
+section{background:#122e3a;border:1px solid #57747a;border-radius:9px;box-shadow:0 15px 40px #061821aa;overflow:hidden}
+canvas{display:block;width:100%;height:auto;aspect-ratio:900/450;touch-action:none;cursor:grab}
+canvas:active{cursor:grabbing}
+.controls{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:14px 18px;border-top:1px solid #56777c}
+.controls p{margin:0;font-size:12px;color:#d2e2d6;flex:1;min-width:220px}
+button{border:1px solid #dec38f;background:#e0be87;color:#213a43;border-radius:5px;padding:10px 17px;font-weight:800;font-size:13px}
+button:hover{background:#f4d7a3}
+.readout{padding:14px 18px;border-top:1px solid #42636e;background:#1b3e49;font-size:13px;line-height:1.75;min-height:78px}
+.readout strong{color:#f5d79c}
+.notes{line-height:1.8;font-size:12px;color:#abbfc2;margin:18px 0}
+small{color:#d4aa76}
+@media(max-width:600px){main{padding:13px}h1{margin-top:23px}.lead{font-size:12px}canvas{aspect-ratio:900/450}.controls{padding:11px}.controls p{font-size:11px}.readout{font-size:12px}.notes{font-size:11px}}
+</style></head><body>
+<main><nav><a href="../">← 全編紙芝居に戻る</a><small>STAGE 04・新能力の操作実験（本編ではありません）</small></nav>
+<h1>字幕が走ると、見張りはどう動く？</h1>
+<p class="lead">「ガラガラ」をつかみ、走っている荷車の上に置いてみてください。<br>字幕を自由な場所に置くこともできます。結果がどう変わるか、何度でも実験できます。</p>
+<section><canvas id="lab" width="900" height="450" aria-label="動いている荷車、見張り、ガラガラの字幕をドラッグして試す小さな操作実験"></canvas>
+<div class="controls"><p>字幕をドラッグ → 荷車の近くで離すと<strong>貼り付け</strong>。ほかの場所では通常の移動になります。</p><button id="reset" type="button">やり直す ↻</button></div>
+<div id="readout" class="readout" role="status" aria-live="polite">音字「ガラガラ」をつかんでみよう。</div></section>
+<p class="notes">この実験は字幕と見張り・荷物の連鎖を確かめるための小さな試作です。ステージ4の完成版ではありません。動き・NPCの判断・文字の寿命・難易度は今後のプレイテストで調整します。</p>
+</main><script type="module" src="./lab.js"></script></body></html>
