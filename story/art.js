@@ -137,6 +137,46 @@ function fx(type){
    g+=bubble(690,245,"カン×３");
    g+=text(687,183,"字幕で人を呼ぶ",19);
  }
+ if(type==="silent-zone"){
+  g+=circ(668,277,36,"#d6ad7e",{stroke:"#f5d8a9","stroke-width":4});
+  for(let i=0;i<3;i++)g+=circ(669,278,64+i*25,"none",{stroke:"#f2dfbd","stroke-width":3,opacity:.8-i*.22});
+  g+=text(664,175,"音はする。でも、文字がない",22);
+  g+=text(661,286,"●",24,"#233d43");
+ }
+ if(type==="firstsign"){
+  g+=rect(566,210,238,119,"#f2dcb4",{rx:8,stroke:"#725442","stroke-width":9});
+  g+=text(682,282,"カン！",39,"#314b50");
+  g+=path("M611 336 Q452 385 284 303","#f4db9f",6,{"stroke-dasharray":"10 12"});
+  g+=text(396,221,"手で運ばれた最初の札",22);
+  g+=text(337,309,"安全な入口へ",17);
+ }
+ if(type==="rewind"){
+  g+=rect(484,180,368,67,"#203e4de8",{rx:9,stroke:"#f4d9a3","stroke-width":3});
+  g+=text(670,224,"昨夜：地下（修正済み）",19);
+  g+=path("M679 260 V314","#f5e0a4",5,{"stroke-dasharray":"9 9"});
+  g+=rect(484,317,368,67,"#7e514fe8",{rx:9,stroke:"#edcba9","stroke-width":3});
+  g+=text(670,359,"今朝：空き家（自動復帰）",18);
+ }
+ if(type==="incident"){
+  g+=rect(575,305,200,100,"#6f6f63",{rx:7,stroke:"#ead2a2","stroke-width":6});
+  g+=tag("g",{transform:"translate(635 253) rotate(31)"},rect(-79,-18,158,36,"#a1886b",{rx:3,stroke:"#dbbf90","stroke-width":4}));
+  g+=text(656,182,"外れた点検蓋",23);
+  g+=bubble(422,307,"ガタン！");
+ }
+ if(type==="chain"){
+  g+=bubble(359,267,"カーン！");
+  g+=path("M461 265 Q504 198 559 259","#f6dc9b",5,{"stroke-dasharray":"8 9"});
+  g+=bubble(676,269,"ガン！");
+  g+=path("M677 326 Q753 361 815 334","#e5c893",4,{"stroke-dasharray":"6 9"});
+  g+=text(653,183,"人が動き、新しい音が生まれる",19);
+ }
+ if(type==="corrected"){
+  g+=circ(345,277,65,"#275359",{stroke:"#dbe7b5","stroke-width":6});
+  g+=text(345,271,"原音",18)+text(345,298,"地下",18);
+  g+=bubble(624,268,"カン×３");
+  g+=path("M529 281 Q445 299 420 280","#b5dfbb",6);
+  g+=text(623,206,"もう空き家へ飛ばない",18);
+ }
  if(type==="erase"){
   const a=[[570,242,-18],[620,212,18],[670,250,-33],[572,305,9],[631,318,35],[690,304,-8]];
   for(const [x,y,r] of a)g+=tag("g",{transform:"translate("+x+" "+y+") rotate("+r+")"},rect(-16,-16,32,32,"#f8e2b8",{rx:4,stroke:"#b08c60","stroke-width":3}));
