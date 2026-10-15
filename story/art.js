@@ -114,6 +114,13 @@ function fx(type){
   for(const [x,y,r] of a)g+=tag("g",{transform:"translate("+x+" "+y+") rotate("+r+")"},rect(-16,-16,32,32,"#f8e2b8",{rx:4,stroke:"#b08c60","stroke-width":3}));
   g+=text(623,379,"字幕を破壊！",28);
  }
+ if(type==="hold"){
+  g+=bubble(617,265,"カーン！");
+  g+=circ(612,265,114,"none",{stroke:"#ffe2a2","stroke-width":4,"stroke-dasharray":"7 11"});
+  g+=text(604,385,"手を離すと消える",20);
+  g+=path("M459 238 Q487 196 516 242","#f0cf8b",6);
+  g+=text(496,218,"⌛",32);
+ }
  if(type==="save"){
   g+=bubble(321,274,"カーン！")+path("M430 265 Q495 203 560 264","#f8dcaa",5,{"stroke-dasharray":"9 12"})+
    rect(548,231,160,103,"#234a57",{rx:13,stroke:"#eccb8d","stroke-width":5})+text(628,295,"保 存",29);

@@ -67,7 +67,7 @@ function render(){
  $("gameplay").textContent=scene.play;
  $("artwork").setAttribute("data-scene",scene.art);
  $("artwork").setAttribute("data-effect",scene.effect);
- const ability=scene.ability==="all"?{mark:"∞",name:"全能力",desc:"移動・破壊・保存・分裂・訂正を組み合わせる"}:(abilities.find(item=>item.key===scene.ability)||abilities[0]);
+ const ability=abilities.find(item=>item.key===scene.ability)||abilities[0];
  $("ability-tag").textContent=ability.mark+" "+ability.name+(scene.kind==="能力解放"?" 解放":"");
  $("ability-symbol").textContent=ability.mark;
  $("ability-name").textContent=ability.name+(scene.kind==="能力解放"?" — NEW!":"");
