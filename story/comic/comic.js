@@ -1,3 +1,5 @@
+import {mountToy,toyState} from "./microplay.js";
+import {portrait} from "./portraits.js";
 /** 音の字幕を「読む」のではなく、人の判断が変わる瞬間を紙芝居として実演する。 */
 const chapters=[
  {title:"空き家からの三打",short:"異常",tag:"ACT 01 · THE IMPOSSIBLE SOUND",heading:"誰もいない場所から、<b>助けを呼ぶ音。</b>",
@@ -8,25 +10,25 @@ const chapters=[
  ]},
  {title:"三打への二打",short:"返事",tag:"ACT 02 · AN ANSWER",heading:"三回叩いた。<b>二回、返ってきた。</b>",
  panels:[
-  {type:"pipe",sfx:"カン！ カン！ カン！",caption:"トトが配管を三回叩く。しばらく返事はない。",talk:[["トト","……返事してよ。","low"]]},
-  {type:"pipe",sfx:"コン、コン！",caption:"管の向こうから、たった二回。トトの顔が一変する。",talk:[["トト","二回だ！　母ちゃん、返事が雑な時は二回なんだ！","joy"],["ミオ","その言い方、本人の前でもできる？","dry"]]},
+  {type:"pipe",sfx:"カン！ カン！ カン！",caption:"トトが配管の前で手を止めた。向こうに誰かいるなら、どう確かめる？",talk:[["トト","……返事してよ。","low"]]},
+  {type:"pipe",sfx:"コン、コン！",caption:"自分で三回叩いたあと、管の向こうからたった二回。トトの顔が一変する。",talk:[["トト","二回だ！　母ちゃん、返事が雑な時は二回なんだ！","joy"],["ミオ","その言い方、本人の前でもできる？","dry"]]},
   {type:"rescue",caption:"エマは自分で内側の掛け金を外して待っていた。巡回員が外から開ける。",talk:[["エマ","こっちは平気。……あんた、靴びしょびしょ！","stern"],["トト","助かった人の第一声がそれ!?","joy"]]}
  ]},
  {title:"最初の「カン！」",short:"発見",tag:"ACT 03 · THE FIRST SIGN",heading:"字は、音の場所を<b>教えるだけじゃなかった。</b>",
  panels:[
   {type:"silent",sfx:"コツ……",caption:"字幕が一枚も出ない通路。なのに、巡回員は音の方を正確に向く。",talk:[["トト","字がないのに、当てた!?","surprised"],["ミオ","音はずっと聞こえてた。おかしいのは、あっちの管だね。","thought"]]},
   {type:"reflection",sfx:"カーン……",caption:"昔の拡声管が、音を街の反対側へ運んでしまう。それで人々は方向を見失った。",talk:[["トト","遠くまで聞こえるようにしたら、近くで迷子になったの？","thought"],["ミオ","便利な工事ほど、あとが大変。","dry"]]},
-  {type:"firstsign",sfx:"カン！",caption:"最初の救助。地下の真上は崩れていた。職人は文字の札を、安全な階段へ運んだ。",talk:[["トト","音の下じゃない！　人が入れる場所に字を置いたんだ！","joy"],["ミオ","……最初の修理屋、私より仕事が速いね。","smile"]]}
+  {type:"firstsign",sfx:"カン！",caption:"昔の救助現場を再現した模型。地下の真上は崩れている。古い「カン！」の札は、まだ動かせる。",talk:[["トト","あの人、真下じゃ入れない。札、動かしたら？","joy"],["ミオ","それ、今の私たちもできるね。","smile"]]}
  ]},
  {title:"字幕を動かせ",short:"決断",tag:"ACT 04 · YOUR MOVE",heading:"ここから先は、<b>あなたが動かす。</b>",
  panels:[
-  {type:"fork",caption:"今夜、新人を含む交代員三人が来る。古い案内先は崩れた空き家。",talk:[["トト","もう灯りが見える！　空き家に行っちゃう！","urgent"],["ミオ","工房は近いけど騒がしい。水路は遠いけど静か。道を確かめよう。","thought"]]},
+  {type:"map",caption:"昨夜の修理履歴にミオの署名。仮に音源を確かめた直後、点検蓋の事故で倒れ、数時間の記憶を失った。まだ安全な入口を確認できていない。",talk:[["トト","昨日直したの、ミオじゃん！","surprised"],["ミオ","場所は確かめた。でも、人が通れるかは別。……やり残した方を片づけよう。","thought"]]},
   {type:"workshop",sfx:"ガラガラ！／ギギッ！",caption:"荷台をどけるか、錆びた手すりを外すか。人が実物を動かすと、新しい音字幕が生まれる。",talk:[["ミオ","人が動くと、新しい音も生まれる。……さて、どっちを使う？","smile"]]},
   {type:"fork",sfx:"コン、コン！ → カン！ カン！ カン！",caption:"エマが二打で安全を知らせ、トトが三打を返す。だが字幕は再び、崩れた空き家へ。",talk:[["トト","また空き家だ！　この三打、動かせるよ！","urgent"],["ミオ","最後は、あなたが選んで。","smile"]]}
  ]},
  {title:"朝の二打",short:"余韻",tag:"ACT 05 · THE NEXT MORNING",heading:"救難の合図は、<b>いつもの朝の音になる。</b>",
  panels:[
-  {type:"morning",sfx:"カン、カン、カン！",caption:"夜が明けた。更新を越えても、字幕は空き家へ戻らない。交代員三人は無事に帰る。",talk:[["ミオ","今朝は、ちゃんと戻ってこなかったね。","smile"]]},
+  {type:"morning",sfx:"カン、カン、カン！",caption:"夜が明けた。音字幕の行き先は、プレイヤーが確かめた入口のまま。交代員三人も戻った。",talk:[["ミオ","今朝は、字が空き家に戻ってない。よし。","smile"]]},
   {type:"kitchen",sfx:"コン、コン！",caption:"エマが鍋を三回叩く。トトは反射的に二回返す。",talk:[["エマ","朝ごはんは、口で返事！","stern"],["トト","母ちゃんが三回叩くからでしょ！","joy"]]},
   {type:"kitchen",caption:"危険を知らせた三打も、ちゃんと帰ってきた二打も、今日からは家の音。",talk:[["ミオ","この家は、地図がなくてもうるさいな。","smile"]]}
  ]}
@@ -62,64 +64,32 @@ function illustration(type){
 }
 /** 登場人物の台詞をすべてテキスト要素として描画し、字幕の読みにくい焼き込みを避ける。 */
 function panelMarkup(panel,i){
- const dialogue=panel.talk.map(([name,line,mood])=>'<div class="line '+safe(mood)+'"><span class="speaker">'+safe(name)+'</span><span>'+safe(line)+'</span></div>').join("");
+ const dialogue=panel.talk.map(([name,line,mood])=>'<div class="line '+safe(mood)+'"><span class="talk-face">'+portrait(name,mood)+'</span><span class="talk-copy"><b class="speaker">'+safe(name)+'</b><span>'+safe(line)+'</span></span></div>').join("");
  return '<section class="comic-panel '+(i===0?'wide':'')+'" data-panel="'+i+'" data-art="'+safe(panel.type)+'"><div class="panel-art">'+illustration(panel.type)+'</div><div class="panel-top"><span class="frame-no">'+String(i+1).padStart(2,"0")+'</span>'+(panel.sfx?'<strong class="sfx">'+safe(panel.sfx)+'</strong>':'')+'</div><div class="panel-text"><p class="beat">'+safe(panel.caption)+'</p><div class="lines">'+dialogue+'</div></div></section>';
 }
 let page=0;
 let route=null;
+let routeSound=null;
 const strip=$("chapter-strip");
 chapters.forEach((chapter,i)=>{
  const button=document.createElement("button");button.type="button";button.className="chapter-button";
  button.innerHTML='<small>第'+(i+1)+'幕</small><strong>'+safe(chapter.short)+'</strong>';
  button.addEventListener("click",()=>showPage(i));strip.appendChild(button);
 });
-/** 工房／水路の選択を、実ゲームの固定正解にせず演出検証用の自由な操作として扱う。 */
-function choiceMarkup(){
- return '<section class="choice-episode" aria-label="字幕移動の小さな演出実験"><header><div><small>TOUCH / DRAG EXPERIMENT</small><h3>「カン！」を、どこへ運ぶ？</h3></div><p>「カン！」をつかんで入口へ動かすか、ボタンで選んでください。<br>どちらの道も、人が現物を確かめた場合に有効です。</p></header><div class="choice-field" id="choice-field"><div class="choice-route old" id="target-old" data-route="old"><span>閉鎖された空き家</span><small>崩れた階段 · 危険</small></div><div class="choice-route workshop" id="target-workshop" data-route="workshop"><span>工房の入口</span><small>近いが騒がしい</small></div><div class="choice-route canal" id="target-canal" data-route="canal"><span>水路の入口</span><small>静かだが遠回り</small></div><button id="caption-token" type="button" aria-label="音字幕カンをドラッグして入口へ" class="caption-token">カン！<span class="grab-tip">つかんで動かす ↗</span></button></div><div class="choice-buttons"><button type="button" data-pick="workshop">工房へ運ぶ</button><button type="button" data-pick="canal">水路へ運ぶ</button><button type="button" data-pick="old">空き家に置く</button></div><p class="choice-result" id="choice-result" role="status" aria-live="polite">今はまだ、三打の字幕が空き家を指している。</p></section>';
-}
-const outcomes={
- workshop:'巡回員が荷台をよけ、新人は工房の階段を確認して通った。「ガラガラ！」という車輪の音が、夜明けまで残る。',
- canal:'エマが手すりを確かめ、交代員は水路の階段を一列で進んだ。「ギギッ！」という金具の音が、朝には小さくなった。',
- old:'交代員は崩れた床を見て立ち止まった。ここでは進めない。安全を確かめた入口を選び直せる。'
-};
-/** 失敗は即ゲームオーバーにせず、現物を見たNPCの判断で修正可能と伝える。 */
-function pickRoute(value){
- if(!(value in outcomes))return;
- if(value!=="old")route=value;
- $("choice-result").textContent=outcomes[value];
- document.querySelectorAll(".choice-route").forEach(el=>el.classList.toggle("chosen",el.dataset.route===value));
- document.querySelectorAll("[data-pick]").forEach(el=>el.setAttribute("aria-pressed",String(el.dataset.pick===value)));
- const token=$("caption-token");if(token){token.style.transform="";token.classList.toggle("settled",value!=="old");}
-}
-function setupChoice(){
- document.querySelectorAll("[data-pick]").forEach(button=>button.addEventListener("click",()=>pickRoute(button.dataset.pick)));
- const token=$("caption-token");const field=$("choice-field");let drag=null;
- token.addEventListener("pointerdown",event=>{
-  if(event.button!==0 && event.pointerType==="mouse")return;
-  drag={pointerId:event.pointerId,startX:event.clientX,startY:event.clientY,deltaX:0,deltaY:0};
-  token.setPointerCapture(event.pointerId);token.classList.add("dragging");
- });
- token.addEventListener("pointermove",event=>{
-  if(!drag||event.pointerId!==drag.pointerId)return;
-  drag.deltaX=event.clientX-drag.startX;drag.deltaY=event.clientY-drag.startY;
-  token.style.transform='translate('+drag.deltaX+'px,'+drag.deltaY+'px)';
- });
- token.addEventListener("pointerup",event=>{
-  if(!drag||event.pointerId!==drag.pointerId)return;
-  token.classList.remove("dragging");
-  const x=event.clientX,y=event.clientY;let hit=null;
-  field.querySelectorAll(".choice-route").forEach(el=>{const r=el.getBoundingClientRect();if(x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom)hit=el.dataset.route;});
-  token.style.transform="";drag=null;
-  if(hit)pickRoute(hit);
- });
- token.addEventListener("pointercancel",()=>{drag=null;token.classList.remove("dragging");token.style.transform="";});
-}
 function showPage(next){
  const target=Math.max(0,Math.min(chapters.length-1,next));
  page=target;const current=chapters[page];
- $("paper-stage").innerHTML='<header class="act-header"><span>'+safe(current.tag)+'</span><h2>'+current.heading+'</h2></header><div class="comic-grid">'+current.panels.map(panelMarkup).join("")+'</div>'+(page===3?choiceMarkup():'');
- if(page===3)setupChoice();
- if(page===4&&route){const note=document.createElement("p");note.className="chosen-note";note.textContent=route==="workshop"?"選んだ工房側から、三人が無事に帰ってきた。":"選んだ水路側から、三人が無事に帰ってきた。";$("paper-stage").appendChild(note);}
+ const pivot=page===2||page===3?2:1;
+ const opening=current.panels.slice(0,pivot).map((panel,i)=>panelMarkup(panel,i)).join("");
+ const remainder=current.panels.slice(pivot).map((panel,i)=>panelMarkup(panel,i+pivot)).join("");
+ $("paper-stage").innerHTML='<header class="act-header"><span>'+safe(current.tag)+'</span><h2>'+current.heading+'</h2></header><div class="comic-grid">'+opening+'</div>'+(page<4?'<div class="comic-play" id="comic-play"></div>':'')+'<div class="comic-grid followup-grid">'+remainder+'</div>';
+ if(page<4)mountToy(page+1,$("comic-play"),(selected,sound)=>{route=selected;routeSound=sound;});
+ if(page===4){
+  if(!route){const banner=document.createElement("p");banner.className="unplayed-banner";banner.textContent="この結末は参考演出です。第4幕で二つ目の字幕まで動かすと、あなたの選んだ経路の結末になります。";$("paper-stage").querySelector(".act-header").after(banner);}
+  const note=document.createElement("p");note.className="chosen-note";
+  note.textContent=route?(route==="workshop"?"選んだ工房側から三人が帰った。あの「"+routeSound+"」はまだ車輪のそばで鳴る。":"選んだ水路側から三人が帰った。あの「"+routeSound+"」はまだ金具のそばで鳴る。"):"これは結末の見本。第4幕で実際に新しい字幕を動かすと、あなたの選択がここへ残る。";
+  $("paper-stage").appendChild(note);
+ }
  [...strip.children].forEach((b,i)=>{b.setAttribute("aria-current",i===page?"step":"false");});
  $("back").disabled=page===0;$("forward").textContent=page===chapters.length-1?"第1幕に戻る ↻":"次の幕 →";
  $("page-indicator").textContent=(page+1)+" / "+chapters.length;
@@ -143,9 +113,9 @@ $("paper-stage").addEventListener("touchend",e=>{
  if(!touchStart||!e.changedTouches.length)return;
  const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;
  touchStart=null;
- if(Math.abs(dx)>85&&Math.abs(dx)>Math.abs(dy)*1.6&&!e.target.closest(".choice-episode"))showPage(page+(dx<0?1:-1));
+ if(Math.abs(dx)>85&&Math.abs(dx)>Math.abs(dy)*1.6&&!e.target.closest(".toy"))showPage(page+(dx<0?1:-1));
 },{passive:true});
 window.addEventListener("hashchange",()=>{const match=/#act-(\d+)/.exec(location.hash);if(match)showPage(Number(match[1])-1);});
 const match=/#act-(\d+)/.exec(location.hash);showPage(match?Number(match[1])-1:0);
 /** ブラウザQA専用の読み取りスナップショット。 */
-Object.defineProperty(window,"__comicSnapshot",{value:()=>({act:page+1,total:chapters.length,panels:$("paper-stage").querySelectorAll("[data-panel]").length,route:route,choiceVisible:Boolean($("caption-token"))})});
+Object.defineProperty(window,"__comicSnapshot",{value:()=>({act:page+1,total:chapters.length,panels:$("paper-stage").querySelectorAll("[data-panel]").length,route:route,choiceVisible:Boolean($("toy-chip")),toy:toyState(page+1)})});

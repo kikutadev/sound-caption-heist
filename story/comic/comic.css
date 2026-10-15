@@ -14,3 +14,75 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:f
 @media(max-width:850px){.site{padding:0 15px}.comic-panel{min-height:310px}.comic-panel.wide{min-height:370px}.line{font-size:12px}.beat{font-size:12px}.panel-text{padding:12px}.choice-route.workshop{left:3%}.choice-route.canal{right:3%}}
 @media(max-width:600px){.site{padding:0 9px}.masthead{min-height:64px}.masthead-title .logo{width:36px;height:36px;font-size:23px}.masthead-title strong{font-size:18px}.masthead-title small{font-size:7px}.masthead .return{font-size:10px}.masthead .play-link{display:none}.opening{padding:20px 0 11px}.opening-summary{font-size:12px;line-height:1.8}.disclaimer{font-size:10px}.chapter-strip{gap:3px}.chapter-button{padding:9px 1px}.chapter-button strong{font-size:11px}.chapter-button small{font-size:9px}.act-header{padding:14px 8px 13px}.act-header h2{font-size:21px}.act-header span{font-size:9px;letter-spacing:.15em}.comic-grid{display:block;padding:6px}.comic-panel,.comic-panel.wide{min-height:390px;margin-bottom:6px}.comic-panel:last-child{margin-bottom:0}.panel-art svg{height:100%;width:100%;object-fit:cover}.panel-top{padding:12px 11px;min-height:68px}.comic-panel.wide .sfx,.sfx{font-size:26px}.panel-text,.comic-panel.wide .panel-text{padding:12px 12px 14px;min-height:0}.comic-panel.wide .lines{grid-template-columns:1fr;gap:7px}.line,.comic-panel.wide .line{font-size:12px;max-width:100%;padding:9px 10px}.beat{font-size:11px}.choice-episode{padding:17px 12px}.choice-episode header{display:block}.choice-episode h3{font-size:24px}.choice-episode header p{font-size:11px}.choice-field{height:280px}.choice-route{min-width:127px;max-width:46%;min-height:83px}.choice-route span{font-size:11px}.choice-route small{font-size:9px}.choice-route.workshop{left:2%}.choice-route.canal{right:2%}.choice-route.old{top:13px}.caption-token{top:52%;font-size:22px}.choice-buttons button{font-size:11px;flex:1;min-width:90px;padding:10px 4px}.choice-result{font-size:12px}.stage-controls{gap:6px}.nav-button{min-width:99px;padding:11px 7px;font-size:11px}.paging{width:auto;flex:1}.page-footer span{display:none}.page-footer{justify-content:center}.footnote{font-size:10px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* Playable moments: captions sit above a readable stage map, and a visible NPC reacts. */
+.comic-play{border-top:7px solid #d6ad75;background:#102432;padding:17px 23px 24px}
+.toy{border:1px solid #748b92;border-radius:8px;overflow:hidden;background:#142d3b}
+.toy header{padding:17px 18px 10px;background:#233846}
+.toy header>span{display:block;font:700 11px Georgia,serif;letter-spacing:.15em;color:#f1c386}
+.toy h3{font:800 25px "Shippori Mincho",serif;margin:6px 0;color:#fff0d0}
+.toy header p{font-size:13px;line-height:1.7;color:#c4d7d8;margin:0 0 8px}
+.toy-map{height:290px;position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 30%,#426072,#182c3b 75%);border-block:2px solid #647b82;touch-action:pan-y}
+.toy-map:before{content:"";position:absolute;inset:0;z-index:-2;background:repeating-linear-gradient(0deg,transparent 0 46px,#99abaf1c 47px 48px),repeating-linear-gradient(90deg,transparent 0 54px,#99abaf17 55px 56px)}
+.toy-map:after{content:"";position:absolute;left:14%;right:15%;top:70%;border-bottom:5px dashed #d6bd8066;pointer-events:none}
+.toy-source{position:absolute;top:18px;left:18px;border:1px solid #688d96;background:#182f3dcc;color:#bdd2d5;font-size:12px;padding:9px 11px;border-radius:5px;z-index:1}
+.toy-actor,.toy-crew{position:absolute;z-index:1;bottom:29%;left:45%;background:#425c65;border:2px solid #e8c587;box-shadow:0 5px 14px #0008;border-radius:20px;color:#fff4da;padding:8px 10px;font-size:12px;font-weight:800;transition:transform .3s ease}
+.toy-actor.shifted{transform:translate(130px,-28px);background:#637953}
+.toy-crew{left:70%;bottom:28%;background:#7c6263}
+.toy-crew.shifted{transform:translate(-105px,-24px);background:#567c67}
+.toy-target{position:absolute;z-index:2;min-width:168px;max-width:32%;border:2px solid #e6c28e;background:#203845ef;border-radius:10px;color:#fff3d8;padding:10px 12px;display:grid;gap:3px;text-align:center;justify-items:center}
+.toy-target:hover,.toy-target:focus-visible{background:#49616d}
+.toy-target small{color:#c6d6d6;font-size:11px;font-weight:500}
+.toy-hidden,.toy-collapse,.toy-old{top:13px;right:12%;border-color:#c97c6c}
+.toy-crate,.toy-stairs,.toy-workshop{bottom:11px;left:6%}
+.toy-lamp,.toy-ladder,.toy-canal,.toy-crew~.toy-target:last-of-type{bottom:11px;right:6%}
+.toy-map[data-state="produced"] .toy-crew~.toy-target{bottom:11px}
+.toy-map[data-state="produced"] .toy-old{top:auto;bottom:11px;left:6%;right:auto}
+.toy-map[data-state="produced"] .toy-crew~.toy-target[data-to="crew"]{right:6%;left:auto}
+.toy-chip{position:absolute;z-index:5;left:49%;top:28%;min-width:111px;transform:translateX(-50%);background:#f5d393;border:2px solid #fff0c8;border-radius:8px;color:#643927;font:900 25px "Shippori Mincho",serif;padding:9px 12px 6px;box-shadow:0 3px 19px #f7c87975;touch-action:none;user-select:none;cursor:grab}
+.toy-chip small{font:700 10px "Noto Sans JP",sans-serif;display:block;white-space:nowrap;margin-top:3px}
+.toy-chip.dragging{cursor:grabbing;outline:3px solid #fff}
+.toy-actions{padding:13px 13px 6px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.toy-actions button{background:#355363;color:#ffead0;border:1px solid #b7a484;font-weight:800;font-size:12px;border-radius:5px;min-height:42px;padding:9px 15px}
+.toy-actions button:hover{background:#60727b}
+.toy-result{background:#0b222f;color:#f8e7bd;border-left:4px solid #a3d4a6;padding:14px 17px;margin:8px 13px 10px;font-size:14px;line-height:1.7;min-height:54px}
+.toy-error{border-left-color:#e3a280;color:#f4d2b2}
+.toy-steps{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:5px;margin:6px 13px 17px;color:#a0d5c7;font-size:12px}
+.toy-steps span{padding:6px 9px;border:1px solid #6f9c91;border-radius:3px}
+.toy-steps b{color:#e3c086}
+.knock-field{height:260px;background:linear-gradient(#1b3142,#132736);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px}
+.pipe-art{width:75%;border-radius:28px;height:27px;background:linear-gradient(#879aa2,#465e6c,#aab3b2);box-shadow:0 6px 10px #0007;border:3px solid #2f4351}
+.knock-field strong{font-size:31px;color:#ffdc98}
+.knock-field button{background:#e5b677;color:#172935;border:2px solid #fff0c5;border-radius:6px;padding:12px 26px;font-weight:900;font-size:18px}
+.knock-field button:active{transform:scale(.97)}
+@media(max-width:600px){.comic-play{padding:9px}.toy header{padding:13px}.toy h3{font-size:20px}.toy header p{font-size:12px}.toy-map{height:300px}.toy-target{min-width:119px;max-width:45%;padding:8px 4px;font-size:11px}.toy-target small{font-size:9px}.toy-hidden,.toy-collapse,.toy-old{right:6%}.toy-crate,.toy-stairs,.toy-workshop{left:3%}.toy-lamp,.toy-ladder,.toy-canal{right:3%}.toy-chip{left:50%;top:34%;font-size:20px;min-width:95px;padding:7px}.toy-chip small{font-size:8px}.toy-actor{bottom:37%;left:25%;font-size:10px}.toy-actor.shifted{transform:translate(65px,-20px)}.toy-crew{left:62%;bottom:37%;font-size:10px}.toy-crew.shifted{transform:translate(-55px,-14px)}.toy-source{top:9px;left:7px;font-size:10px;padding:5px}.toy-actions{padding:9px 4px 2px;gap:6px}.toy-actions button{flex:1;font-size:10px;padding:7px 5px;min-width:90px}.toy-result{font-size:12px}.toy-steps{font-size:10px}}
+
+/* Actors in speech panels: expressions change with dialogue, not with static image assets. */
+.line{align-items:center;gap:10px}
+.talk-face{width:53px;height:58px;flex:0 0 auto;border-radius:11px;background:linear-gradient(#e4cba8,#a2a6a4);border:1px solid #bb9372;overflow:hidden;align-self:center}
+.talk-face svg{width:100%;height:100%;display:block}
+.talk-copy{display:flex;flex-direction:column;min-width:0;gap:4px}
+.talk-copy .speaker{width:max-content}
+@media(max-width:600px){.talk-face{width:43px;height:49px}.line{gap:8px}}
+
+.toy header{position:relative}
+.toy-audio{float:right;background:#17323d;border:1px solid #caa980;border-radius:6px;color:#ffe0a5;padding:7px 11px;font-size:11px;font-weight:800}
+.toy-audio[aria-pressed=false]{color:#c8ccce;border-color:#7e969f}
+.toy-chip{animation:caption-appear .28s ease-out}
+@keyframes caption-appear{from{opacity:.55;filter:brightness(1.7)}to{opacity:1;filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.toy-chip{animation:none}}
+
+.unplayed-banner{margin:0;background:#5b3837;border-bottom:2px solid #e8c08c;color:#fff2dc;font-size:13px;text-align:center;padding:13px;line-height:1.8}
+
+/* Object states correspond to the NPC's physical work, not the caption's coordinates. */
+.toy-prop,.toy-gate{position:absolute;z-index:1;bottom:27%;border:2px solid #d5b88b;color:#fff3d9;background:#785e4d;padding:8px 14px;min-width:80px;text-align:center;border-radius:7px;box-shadow:0 5px 10px #0008;font-weight:900;font-size:13px}
+.toy-prop.cart{left:21%;transform:rotate(-3deg)}
+.toy-prop.cart.activated{animation:cart-shift .6s ease-out both;background:#9e805d}
+.toy-prop.canal{right:15%;background:#456374}
+.toy-prop.canal.activated{animation:metal-shift .5s ease-out both;background:#739178}
+.toy-gate{right:19%;background:#6f5350}
+.toy-gate.opened{background:#456c5d;border-color:#b8d39b;transform:translateX(65px)}
+@keyframes cart-shift{from{transform:translateX(0) rotate(-3deg)}to{transform:translateX(75px) rotate(0deg)}}
+@keyframes metal-shift{from{transform:rotate(0deg)}to{transform:rotate(-18deg) translateY(-15px)}}
+@media(max-width:600px){.toy-prop,.toy-gate{bottom:32%;font-size:11px;min-width:58px;padding:7px}.toy-prop.cart{left:8%}.toy-prop.canal{right:6%}.toy-gate{right:8%}}
+@media(prefers-reduced-motion:reduce){.toy-prop{animation:none!important}}
