@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%231b3a44'/%3E%3Ctext x='24' y='34' text-anchor='middle' font-size='29'%3E%E9%9F%B3%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#0b1e2b" />
+  <meta name="description" content="音は嘘をつかない。でも、音の居場所は嘘をつく。字幕を動かして警備員を出し抜くステルスパズル。" />
+  <title>音字泥棒 — PROLOGUE</title>
+  <script type="module" crossorigin src="./assets/index-Bg57lM_i.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-C9SNApz3.css">
+</head>
+<body>
+  <div id="app">
+    <header class="top">
+      <div class="brand"><div class="brand-seal">音</div><div class="brand-copy"><span class="eyebrow">BELNOIR SOUND ARCHIVE</span><strong>音字泥棒 <span>— おんじどろぼう —</span></strong></div></div>
+      <div class="top-controls"><span class="edition">PROLOGUE / 01</span><button id="mute" type="button" aria-label="音をミュート">♫ <span>音声 ON</span></button><button id="pause" type="button" aria-label="一時停止">Ⅱ</button></div>
+    </header>
+
+    <main class="main">
+      <section class="game-shell" aria-label="音字泥棒のゲーム画面">
+        <div class="scene-frame" id="scene-frame">
+          <canvas id="stage" width="1040" height="620" aria-label="ステージ1。主人公を動かし効果音字幕をドラッグするゲーム" tabindex="0"></canvas>
+          <div id="vignette"></div>
+          <div class="scene-top"><div class="chapter"><div>CHAPTER 01 — THE BACK ALLEY</div><strong>足音のない路地</strong></div><div id="status-pill" class="pill">● 平常</div></div>
+          <div class="scene-bottom"><div id="hint" class="hint"><span class="hint-sigil">✦</span><div><strong id="hint-title">足音を、目に見える形へ。</strong><p id="hint-copy">移動すると字幕が生まれます。</p></div></div><div id="step-indicator" class="step-indicator"><i class="active"></i><i></i><i></i></div></div>
+          <div id="toast" class="toast" aria-live="polite"></div>
+          <div class="overlay" id="intro">
+            <div class="intro-orbit">✧</div>
+            <span class="eyebrow">A SMALL STORY ABOUT MISPLACED SOUNDS</span>
+            <h1>音の居場所を、<br /><em>盗め。</em></h1>
+            <p>この街では、音が文字になって現れる。<br />そして、その文字は動かせる。</p>
+            <button class="primary" id="start" type="button">路地へ入る <span>↗</span></button>
+            <span class="intro-foot">STAGE 01 · 約3分の操作チュートリアル</span>
+          </div>
+          <div class="overlay hidden" id="result" aria-live="polite">
+            <span class="eyebrow">STAGE 01 / COMPLETE</span>
+            <h2>誰もいない路地で、<br />誰かの音がした。</h2>
+            <p>移したのは文字だけ。<br />けれど、世界はその嘘を信じた。</p>
+            <div class="result-lines"><span>解放された記録</span><strong>「カン、カン、カン……」</strong></div>
+            <button class="primary" id="replay" type="button">もう一度プレイ <span>↻</span></button>
+          </div>
+          <div class="overlay hidden" id="paused">
+            <span class="eyebrow">TIME IS WAITING</span><h2>ひと息つこう。</h2><p>音も、足音も、少しだけおやすみ。</p>
+            <button class="primary" id="resume" type="button">ゲームに戻る <span>→</span></button>
+          </div>
+        </div>
+        <footer class="below">
+          <div class="instruction"><span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span><span class="separator">/</span><span class="key">↑</span><span class="key">←</span><span class="key">↓</span><span class="key">→</span><span>移動</span><b>·</b><span class="hand">◎</span><span>字幕をドラッグ</span></div>
+          <div class="instruction secondary"><span class="key">SHIFT</span><span>忍び足</span><b>·</b><span class="key">R</span><span>やり直す</span></div>
+          <div class="touch-controls" aria-label="タッチ操作"><div class="move-pad" id="move-pad" aria-label="移動パッド"><button data-dir="up" aria-label="上へ">▲</button><button data-dir="left" aria-label="左へ">◀</button><button data-dir="down" aria-label="下へ">▼</button><button data-dir="right" aria-label="右へ">▶</button></div><button id="quiet" class="quiet" type="button">忍び足：OFF</button></div>
+        </footer>
+      </section>
+      <aside class="story">
+        <span class="eyebrow">HOW THE CITY LISTENS</span><h3>聞こえるのに、<br />場所がわからない。</h3>
+        <div class="line"></div>
+        <p>30年前から、この街では音の方向がわからなくなった。</p>
+        <p>だから、人々は空中に浮かぶ<strong>音の字幕</strong>を信じて暮らしている。</p>
+        <p>字幕をつかみ、別の場所へ動かしてみよう。<br />警備員はその「場所」を調べにいく。</p>
+        <div class="note"><span>✦</span><p>文字を動かしても、本物の音は元の場所に残る。<br /><small>そこに、この街の秘密がある。</small></p></div>
+        <div class="story-bottom"><span>AN INTERACTIVE SOUND EXPERIMENT</span><span>01 / 05</span></div>
+      </aside>
+    </main>
+    <div class="bottom-bar"><span>音字塔 補正端末 ── 試験運転</span><span>THE SOUND DOES NOT MOVE. ONLY THE STORY DOES.</span></div>
+  </div>
+</body>
+</html>
