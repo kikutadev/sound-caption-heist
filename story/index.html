@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%231b3a44'/%3E%3Ctext x='24' y='34' text-anchor='middle' font-size='28'%3E%E9%9F%B3%3C/text%3E%3C/svg%3E"/>
+  <meta name="theme-color" content="#10262f"/>
+  <meta name="description" content="音字泥棒・全10ステージのストーリーと字幕能力をイラスト付きの紙芝居で確認する企画プレビュー。"/>
+  <title>音字泥棒｜全編ストーリー紙芝居</title>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <a class="identity" href="../" aria-label="音字泥棒のゲームへ戻る"><span class="identity-mark">音</span><span><strong>音字泥棒</strong><small>STORYBOARD / 企画プレビュー</small></span></a>
+    <nav class="top-actions" aria-label="ページ移動"><a href="../">▶ ステージ1を遊ぶ</a><span class="draft-label">全編構想・未実装ステージを含む</span></nav>
+  </header>
+  <section class="heading">
+    <div><span class="kicker">THE STORY OF BELNOIR</span><h1>全編ストーリー<span>紙芝居</span></h1><p>どんな事件が起き、どんな能力を使うのか。<br class="mobile-br"/>全10ステージの物語を、最初からエンディングまでめくれます。</p></div>
+    <div class="heading-aside">構想プレビュー <span>01 — 10</span></div>
+  </section>
+  <nav class="chapter-nav" id="chapters" aria-label="章を選ぶ"></nav>
+  <main class="paper" id="paper">
+    <div class="paper-top">
+      <div class="paper-meta"><span id="scene-number">SCENE 01 / 22</span><span class="meta-dot">◆</span><span id="scene-kind">導入</span></div>
+      <div class="stage-nav"><label for="stage-select">ステージへ移動</label><select id="stage-select" aria-label="ステージを選んでジャンプ"></select></div>
+    </div>
+    <div class="story-grid">
+      <section class="art-column" aria-label="場面イラスト">
+        <div class="illustration" id="illustration">
+          <div id="artwork" class="artwork" role="img" aria-label="シーンのイラスト"></div>
+          <span id="scene-location" class="art-location"></span>
+          <span id="scene-sound" class="art-sound"></span>
+          <div id="ability-tag" class="art-ability"></div>
+        </div>
+        <div class="story-caption"><span id="stage-label" class="stage-label">STAGE 01</span><div><h2 id="scene-title"></h2><p id="scene-lead"></p></div></div>
+      </section>
+      <aside class="talk-column" aria-label="物語とゲーム体験">
+        <div class="talk-heading"><span class="dot"></span><span>STORY / 会話</span></div>
+        <div id="dialogues" class="dialogues"></div>
+        <div class="gameplay-card"><div class="gameplay-label">PLAY / この場面で何をする？</div><p id="gameplay"></p></div>
+        <div class="ability-card">
+          <div class="ability-card-top"><span>ABILITY / 使用する字幕操作</span><button type="button" id="ability-details" aria-expanded="false" aria-controls="ability-list">能力一覧 <span>⌄</span></button></div>
+          <div class="ability-current"><span id="ability-symbol" class="ability-symbol"></span><div><strong id="ability-name"></strong><p id="ability-note"></p></div></div>
+          <div class="ability-list hidden" id="ability-list"></div>
+        </div>
+      </aside>
+    </div>
+    <footer class="page-controls">
+      <button id="prev" type="button" class="page-button secondary" aria-label="前の場面へ">← <span>前の場面</span></button>
+      <div class="pager-mid"><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><span id="page-count">1 / 22</span><span class="keyboard-tip">← → キーでも操作できます</span></div>
+      <button id="next" type="button" class="page-button primary">次の場面 <span>→</span></button>
+    </footer>
+  </main>
+  <section class="bottom-guide"><div><strong>このページはストーリーと能力解放の確認用です。</strong><p>ステージ1はプレイ可能。ステージ2以降の紙芝居は制作前の構想であり、実際のゲーム画面ではありません。</p></div><a href="../">ステージ1を遊ぶ ↗</a></section>
+  <footer class="footer"><span>音字泥棒 / STORY CONCEPT</span><span>音源は残る。変えられるのは、人に見える情報。</span></footer>
+</div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
