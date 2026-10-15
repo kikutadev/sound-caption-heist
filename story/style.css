@@ -48,3 +48,5 @@ button,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration
 #recap-toggle:hover{background:#405e62}
 .recap-panel{background:#24414b;border-bottom:1px solid #657c80;padding:13px 22px}.recap-panel strong{font-size:12px;color:#ecd29e}.recap-panel div{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}.recap-panel p{font-size:12px;line-height:1.65;color:#d7e5dd;border-left:2px solid #c8ad7b;margin:0;padding:1px 8px}.stage-nav{flex-wrap:wrap;justify-content:flex-end}
 @media(max-width:700px){.recap-panel{padding:12px}.recap-panel div{grid-template-columns:1fr;gap:5px}.recap-panel p{font-size:11px}#recap-toggle{font-size:9px;padding:6px}.paper-top{height:auto;min-height:53px;padding-top:7px;padding-bottom:7px}}
+/* Link to the separate, dialogue-first paper-theater treatment. */
+.comic-entry{display:inline-flex;margin:12px 0 0;padding:8px 13px;border:1px solid #edc48c;color:#1c3340;background:#f0c98f;border-radius:4px;font-weight:800;white-space:normal;font-size:12px}.comic-entry:hover{background:#ffe2b7}
