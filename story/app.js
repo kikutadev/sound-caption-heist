@@ -66,7 +66,7 @@ function render(){
  $("scene-title").textContent=scene.name;
  $("scene-lead").textContent=scene.intro;
  $("gameplay").textContent=scene.play;
- $("lab-link").hidden=scene.stage!==4;
+ $("lab-link").hidden=true;
  $("artwork").setAttribute("data-scene",scene.art);
  $("artwork").setAttribute("data-effect",scene.effect);
  const ability=abilities.find(item=>item.key===scene.ability)||abilities[0];

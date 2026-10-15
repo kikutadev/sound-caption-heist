@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%231b3a44'/%3E%3Ctext x='24' y='34' text-anchor='middle' font-size='28'%3E%E9%9F%B3%3C/text%3E%3C/svg%3E"/>
   <meta name="theme-color" content="#10262f"/>
-  <meta name="description" content="音字泥棒・全8ステージのストーリーと字幕能力をイラスト付きの紙芝居で確認する企画プレビュー。"/>
+  <meta name="description" content="音字泥棒・全4プレイステージ＋後日談の物語と字幕操作をイラスト付きの紙芝居で確認する企画プレビュー。"/>
   <title>音字泥棒｜全編ストーリー紙芝居</title>
   <link rel="stylesheet" href="./style.css"/>
 </head>
 <body>
 <div class="app">
   <header class="topbar">
-    <a class="identity" href="../" aria-label="音字泥棒のゲームへ戻る"><span class="identity-mark">音</span><span><strong>音字泥棒</strong><small>STORYBOARD / 改稿 v0.7</small></span></a>
-    <nav class="top-actions" aria-label="ページ移動"><a href="../">▶ ステージ1を遊ぶ</a><span class="draft-label">プレイヤー体験優先 v0.7</span></nav>
+    <a class="identity" href="../" aria-label="音字泥棒のゲームへ戻る"><span class="identity-mark">音</span><span><strong>音字泥棒</strong><small>STORYBOARD / 物語改稿 v1.0</small></span></a>
+    <nav class="top-actions" aria-label="ページ移動"><a href="../">▶ ステージ1を遊ぶ</a><span class="draft-label">全編ストーリー v1.0</span></nav>
   </header>
   <section class="heading">
-    <div><span class="kicker">THE STORY OF BELNOIR</span><h1>全編ストーリー<span>紙芝居</span></h1><p>どんな事件が起き、どんな能力を使うのか。<br class="mobile-br"/>字幕の操作で街がどう変わるかを重視した改稿案。<br class="mobile-br"/>全8ステージをエンディングまでめくれます。</p></div>
-    <div class="heading-aside">能力候補は3種類 <span>全8 STAGES</span></div>
+    <div><span class="kicker">THE STORY OF BELNOIR</span><h1>全編ストーリー<span>紙芝居</span></h1><p>どんな事件が起き、どんな能力を使うのか。<br class="mobile-br"/>字幕の操作で街がどう変わるかを重視した改稿案。<br class="mobile-br"/>実装済みの第1ステージから、救助の結末まで全12場面。</p></div>
+    <div class="heading-aside">使う基本操作は「移動」 <span>4 STAGES ＋ ENDING</span></div>
   </section>
   <nav class="chapter-nav" id="chapters" aria-label="章を選ぶ"></nav>
   <main class="paper" id="paper">
     <div class="paper-top">
-      <div class="paper-meta"><span id="scene-number">SCENE 01 / 16</span><span class="meta-dot">◆</span><span id="scene-kind">導入</span></div>
+      <div class="paper-meta"><span id="scene-number">SCENE 01 / 12</span><span class="meta-dot">◆</span><span id="scene-kind">導入</span></div>
       <div class="stage-nav"><button id="recap-toggle" type="button" aria-expanded="false" aria-controls="recap-panel">ここまでのあらすじ</button><label for="stage-select">ステージへ移動</label><select id="stage-select" aria-label="ステージを選んでジャンプ"></select></div>
     </div>
     <div id="recap-panel" class="recap-panel" hidden aria-label="再開時のあらすじ"><strong>ここまでのあらすじ（3文）</strong><div id="recap-lines"></div></div>
@@ -49,11 +49,11 @@
     </div>
     <footer class="page-controls">
       <button id="prev" type="button" class="page-button secondary" aria-label="前の場面へ">← <span>前の場面</span></button>
-      <div class="pager-mid"><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><span id="page-count">1 / 16</span><span class="keyboard-tip">← → キーでも操作できます</span></div>
+      <div class="pager-mid"><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><span id="page-count">1 / 12</span><span class="keyboard-tip">← → キーでも操作できます</span></div>
       <button id="next" type="button" class="page-button primary">次の場面 <span>→</span></button>
     </footer>
   </main>
-  <section class="bottom-guide"><div><strong>このページはプレイヤー体験優先 v0.7 のストーリー構想です。</strong><p>ステージ1はプレイ可能。ステージ2以降の紙芝居は制作前の構想であり、実際のゲーム画面ではありません。</p></div><div class="guide-links"><a href="./lab/">字幕の貼り付けを試す ↗</a><a href="../">ステージ1を遊ぶ ↗</a></div></section>
+  <section class="bottom-guide"><div><strong>このページは全編ストーリー v1.0 のレビュー用紙芝居です。</strong><p>ステージ1はプレイ可能。ステージ2以降の紙芝居は制作前の構想であり、実際のゲーム画面ではありません。</p></div><div class="guide-links"><a href="../">ステージ1を遊ぶ ↗</a></div></section>
   <footer class="footer"><span>音字泥棒 / STORY CONCEPT</span><span>音源は残る。変えられるのは、人に見える情報。</span></footer>
 </div>
 <script type="module" src="./app.js"></script>

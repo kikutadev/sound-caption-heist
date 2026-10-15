@@ -52,13 +52,20 @@ function background(kind){
  if(!internal){
   for(let i=0;i<14;i++){let x=i*84-20,h=110+(i*37)%115;o+=rect(x,239-h,76,h,"#234a579c")+rect(x+26,247-h,11,21,"#d5c18b44");}
  }
- if(["street","market","festival","sunrise"].includes(kind)){
+ if(["street","market","yard","festival","sunrise"].includes(kind)){
   o+=bricks(0,81,370,282,"#876d68")+bricks(385,81,575,283,"#637e7d")+windows(35,161,5)+windows(414,155,8);
   o+=rect(0,358,960,192,"#415c63");
   for(let y=359;y<550;y+=26)for(let x=0;x<960;x+=65)o+=rect(x+(y%2)*.46,y,59,2,"#91a69c37");
   if(kind==="market"||kind==="sunrise")for(let j=0;j<3;j++){
    let x=51+j*305;o+=rect(x,331,210,65,"#536b6a")+polygon((x-12)+",338 "+(x+27)+",286 "+(x+195)+",286 "+(x+222)+",338","#c5aa85");
    for(let k=0;k<5;k++)o+=polygon((x-12+k*43)+",338 "+(x+31+k*43)+",338 "+(x+25+k*43)+",287 "+(x+7+k*43)+",287",k%2?"#b46d5c":"#e3c292");
+  }
+  if(kind==="yard"){
+   o+=rect(0,310,960,56,"#3d5760");
+   o+=rect(60,328,196,69,"#866c59")+rect(71,340,172,41,"none",{stroke:"#e1bd90","stroke-width":5});
+   o+=rect(580,334,112,86,"#8b6e54")+rect(695,361,103,61,"#6b5646");
+   o+=rect(754,237,117,105,"#263c49")+circ(810,295,43,"#bea87b")+circ(810,295,20,"#506d72");
+   o+=text(811,218,"上の巻き上げ機",18);
   }
   if(kind==="street"){o+=rect(785,263,155,247,"#213a44")+rect(807,312,102,192,"#658379")+path("M800 331 Q858 242 916 331","#c9aa78",11);o+=rect(390,402,110,69,"#9a775b")+rect(402,414,86,45,"none",{stroke:"#cfab82","stroke-width":5});}
   o+=lamp(330,311)+lamp(795,315);
@@ -107,7 +114,28 @@ function fx(type){
  if(type==="misplace"||type==="truth"){
   g+=circ(326,280,50,"#244955e9",{stroke:"#e9ca93","stroke-width":4})+text(326,269,"原音",17)+text(326,292,"地下",16);
   g+=path("M380 276 Q510 153 628 271","#f2d6a6",5,{"stroke-dasharray":"10 10"})+bubble(708,270,"カン、カン");
-  g+=text(709,226,type==="truth"?"誘導：補正あり":"表示先：空き家",16,"#f7e1b3");
+  g+=text(709,226,type==="truth"?"空き家の字幕":"表示先：空き家",16,"#f7e1b3");
+ }
+ if(type==="echo"){
+   g+=bubble(659,260,"カン×３");
+   g+=path("M620 291 Q492 367 378 281","#f5d59b",5,{"stroke-dasharray":"8 10"});
+   g+=bubble(325,268,"コン×２");
+   g+=text(495,197,"叩いたら、返ってきた",20);
+ }
+ if(type==="crash"){
+   g+=rect(565,362,109,66,"#916b4e",{rx:4,stroke:"#e0c092","stroke-width":5});
+   g+=tag("g",{transform:"translate(723 372) rotate(32)"},rect(-53,-39,106,78,"#b28f62",{rx:4,stroke:"#dfbd86","stroke-width":5}));
+   g+=bubble(684,274,"ドサッ！");
+   g+=text(682,209,"倒れた箱の新しい音",18);
+ }
+ if(type==="rescue"){
+   g+=rect(599,335,244,91,"#324852",{rx:9,stroke:"#d0ba83","stroke-width":6});
+   g+=circ(735,379,36,"#d4c194")+circ(735,379,14,"#426776");
+   g+=text(732,318,"安全な巻き上げ機",17);
+   g+=circ(283,276,55,"#294d59",{stroke:"#f2d6a6","stroke-width":5})+text(283,267,"原音",18)+text(283,293,"地下",18);
+   g+=path("M348 275 Q477 95 650 249","#f5d59b",6,{"stroke-dasharray":"9 10"});
+   g+=bubble(690,245,"カン×３");
+   g+=text(687,183,"字幕で人を呼ぶ",19);
  }
  if(type==="erase"){
   const a=[[570,242,-18],[620,212,18],[670,250,-33],[572,305,9],[631,318,35],[690,304,-8]];
@@ -146,7 +174,7 @@ export function illustration(scene){
  let people="";
  const coords=[[173,473],[447,488],[814,475]];
  for(let i=0;i<scene.people.length;i++)people+=figure(scene.people[i],coords[i][0],coords[i][1]);
- const palettes={street:["#426977","#1e4153","#e5c087"],tunnel:["#263d49","#1b323f","#deb47e"],market:["#779294","#51727a","#f2d39a"],archive:["#395b68","#263e4b","#e2c492"],canal:["#4d6f7e","#204d61","#e2c493"],workshop:["#657c76","#3d5665","#e8c38a"],festival:["#405c77","#253f59","#f5be84"],storm:["#263c5d","#1e344f","#e2b181"],tower:["#496a71","#294656","#e1bc85"],final:["#37536c","#223f55","#e6c08d"],sunrise:["#cd9477","#a36f71","#f6c995"]};
+ const palettes={street:["#426977","#1e4153","#e5c087"],tunnel:["#263d49","#1b323f","#deb47e"],market:["#779294","#51727a","#f2d39a"],yard:["#637c7a","#375562","#efc58e"],archive:["#395b68","#263e4b","#e2c492"],canal:["#4d6f7e","#204d61","#e2c493"],workshop:["#657c76","#3d5665","#e8c38a"],festival:["#405c77","#253f59","#f5be84"],storm:["#263c5d","#1e344f","#e2b181"],tower:["#496a71","#294656","#e1bc85"],final:["#37536c","#223f55","#e6c08d"],sunrise:["#cd9477","#a36f71","#f6c995"]};
  const [sky,bottom,sun]=palettes[scene.art]||palettes.street;
  return tag("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 960 550","aria-hidden":"true"},
  tag("defs",{},tag("linearGradient",{id:"sky",x1:0,y1:0,x2:".1",y2:1},tag("stop",{offset:0,"stop-color":sky})+tag("stop",{offset:1,"stop-color":bottom}))+tag("radialGradient",{id:"glow"},tag("stop",{offset:0,"stop-color":sun,"stop-opacity":".49"})+tag("stop",{offset:1,"stop-color":sun,"stop-opacity":0}))+tag("filter",{id:"shadow",x:"-50%",y:"-50%",width:"200%",height:"200%"},tag("feDropShadow",{dx:1,dy:5,stdDeviation:7,"flood-color":"#061521","flood-opacity":".65"})))+
