@@ -2,36 +2,11 @@ import {mountToy,toyState} from "./microplay.js";
 import {portrait} from "./portraits.js";
 /** 音の字幕を「読む」のではなく、人の判断が変わる瞬間を紙芝居として実演する。 */
 const chapters=[
- {title:"空き家からの三打",short:"異常",tag:"ACT 01 · THE IMPOSSIBLE SOUND",heading:"誰もいない場所から、<b>助けを呼ぶ音。</b>",
- panels:[
-  {type:"street",sfx:"カン、カン……",caption:"閉鎖された旧街区。音は、今夜も同じ場所から聞こえる。",talk:[["トト","ミオ、またあの音だ！　誰かが助けを呼んでる！","urgent"],["ミオ","音字塔の記録では、ここは無人……のはず。","thought"]]},
-  {type:"map",caption:"音源の記録は「地下」。しかし、公開される字幕だけが「空き家」へ飛ぶ。",talk:[["トト","音は下なのに、字はあの家!?","surprised"]]},
-  {type:"street",sfx:"カン……",caption:"誰が動かした？　何のために？",talk:[["ミオ","全部がずれるなら故障。でも、三打だけだ。","thought"],["トト","考えてる間に、もう一回鳴るかも！","urgent"]]}
- ]},
- {title:"三打への二打",short:"返事",tag:"ACT 02 · AN ANSWER",heading:"三回叩いた。<b>二回、返ってきた。</b>",
- panels:[
-  {type:"pipe",sfx:"カン！ カン！ カン！",caption:"トトが配管の前で手を止めた。向こうに誰かいるなら、どう確かめる？",talk:[["トト","……返事してよ。","low"]]},
-  {type:"pipe",sfx:"コン、コン！",caption:"自分で三回叩いたあと、管の向こうからたった二回。トトの顔が一変する。",talk:[["トト","二回だ！　母ちゃん、返事が雑な時は二回なんだ！","joy"],["ミオ","その言い方、本人の前でもできる？","dry"]]},
-  {type:"rescue",caption:"エマは自分で内側の掛け金を外して待っていた。巡回員が外から開ける。",talk:[["エマ","こっちは平気。……あんた、靴びしょびしょ！","stern"],["トト","助かった人の第一声がそれ!?","joy"]]}
- ]},
- {title:"最初の「カン！」",short:"発見",tag:"ACT 03 · THE FIRST SIGN",heading:"字は、音の場所を<b>教えるだけじゃなかった。</b>",
- panels:[
-  {type:"silent",sfx:"コツ……",caption:"字幕が一枚も出ない通路。なのに、巡回員は音の方を正確に向く。",talk:[["トト","字がないのに、当てた!?","surprised"],["ミオ","音はずっと聞こえてた。おかしいのは、あっちの管だね。","thought"]]},
-  {type:"reflection",sfx:"カーン……",caption:"昔の拡声管が、音を街の反対側へ運んでしまう。それで人々は方向を見失った。",talk:[["トト","遠くまで聞こえるようにしたら、近くで迷子になったの？","thought"],["ミオ","便利な工事ほど、あとが大変。","dry"]]},
-  {type:"firstsign",sfx:"カン！",caption:"昔の救助現場を再現した模型。地下の真上は崩れている。古い「カン！」の札は、まだ動かせる。",talk:[["トト","あの人、真下じゃ入れない。札、動かしたら？","joy"],["ミオ","それ、今の私たちもできるね。","smile"]]}
- ]},
- {title:"字幕を動かせ",short:"決断",tag:"ACT 04 · YOUR MOVE",heading:"ここから先は、<b>あなたが動かす。</b>",
- panels:[
-  {type:"map",caption:"昨夜の修理履歴にミオの署名。仮に音源を確かめた直後、点検蓋の事故で倒れ、数時間の記憶を失った。まだ安全な入口を確認できていない。",talk:[["トト","昨日直したの、ミオじゃん！","surprised"],["ミオ","場所は確かめた。でも、人が通れるかは別。……やり残した方を片づけよう。","thought"]]},
-  {type:"workshop",sfx:"ガラガラ！／ギギッ！",caption:"荷台をどけるか、錆びた手すりを外すか。人が実物を動かすと、新しい音字幕が生まれる。",talk:[["ミオ","人が動くと、新しい音も生まれる。……さて、どっちを使う？","smile"]]},
-  {type:"fork",sfx:"コン、コン！ → カン！ カン！ カン！",caption:"エマが二打で安全を知らせ、トトが三打を返す。だが字幕は再び、崩れた空き家へ。",talk:[["トト","また空き家だ！　この三打、動かせるよ！","urgent"],["ミオ","最後は、あなたが選んで。","smile"]]}
- ]},
- {title:"朝の二打",short:"余韻",tag:"ACT 05 · THE NEXT MORNING",heading:"救難の合図は、<b>いつもの朝の音になる。</b>",
- panels:[
-  {type:"morning",sfx:"カン、カン、カン！",caption:"夜が明けた。音字幕の行き先は、プレイヤーが確かめた入口のまま。交代員三人も戻った。",talk:[["ミオ","今朝は、字が空き家に戻ってない。よし。","smile"]]},
-  {type:"kitchen",sfx:"コン、コン！",caption:"エマが鍋を三回叩く。トトは反射的に二回返す。",talk:[["エマ","朝ごはんは、口で返事！","stern"],["トト","母ちゃんが三回叩くからでしょ！","joy"]]},
-  {type:"kitchen",caption:"危険を知らせた三打も、ちゃんと帰ってきた二打も、今日からは家の音。",talk:[["ミオ","この家は、地図がなくてもうるさいな。","smile"]]}
- ]}
+{"title":"空き家のSOS","short":"異常","tag":"ACT 01 · A MISSING PERSON","heading":"『無人』の地下から、<b>三打のSOS。</b>","panels":[{"type":"street","sfx":"カン、カン……","caption":"音字塔の地図では無人。閉鎖路地では今日も助け声が鳴る。","talk":[["トト","ねえ、あれ聞こえた？　絶対に人がいる！","urgent"],["ミオ","地図だと無人。……音の方は、そう言ってないね。","thought"]]},{"type":"map","sfx":"地下 → 空き家","caption":"実際の三打は地下。人に見える音字幕だけ、空き家の壁へ出る。","talk":[["トト","下から聞こえたのに、字は上!?","surprised"],["ミオ","三打だけだ。誰かがわざと動かした？","thought"]]},{"type":"street","caption":"一晩の記憶がないミオ。まだ、この字幕を動かしたのが誰か知らない。","talk":[["トト","もう一回鳴るまで待つ？","urgent"],["ミオ","待たない。先に履歴を見よう。","smile"]]}]},
+{"title":"犯人は昨日の私","short":"署名","tag":"ACT 02 · THE NAME IN THE LOG","heading":"SOSを動かしたのは、<b>昨日の私。</b>","panels":[{"type":"map","sfx":"23:47 — ミオ","caption":"昨夜の履歴に「地下SOS → 空き家」。実行者はミオ。昨晩の数時間だけ、本人は覚えていない。","talk":[["トト","犯人見つけた。ミオ！","surprised"],["ミオ","本人が取り調べるんだから、逃がしてよ。……何したんだ、私。","dry"]]},{"type":"pipe","sfx":"コン、コン！","caption":"管を三回叩くと二回だけ返る。少年には、その返事をする人が分かっていた。","talk":[["トト","母ちゃんの返事だ！　相変わらず二回だけ！","joy"],["ミオ","安心してから悪口にするの、早いね。","smile"]]},{"type":"rescue","caption":"側通路からエマは脱出。だが隔壁の向こうには、作業名簿に載った三人が残る。","talk":[["エマ","トト！　その靴で走るな！　……奥に三人、まだいる。","stern"],["ミオ","昨日の私、あなたを知ってた？","low"],["エマ","あんたが一番怒ってた。『なんで字が出ない』って。","thought"]]}]},
+{"title":"文字にならない音","short":"空白","tag":"ACT 03 · SILENCE ON THE MAP","heading":"音は鳴っている。<b>なのに字がない。</b>","panels":[{"type":"silent","sfx":"コツ、コツ……","caption":"登録された通りでは足音が字幕になる。旧地下区画では足音が鳴っても、表示は真っ白。","talk":[["トト","今、誰か歩いてたよ！　……字は？","surprised"],["ミオ","私の工具も聞こえてる。なんで表示しない？","thought"]]},{"type":"map","sfx":"記録：あり／公開：なし","caption":"プレイヤーが原音と公開表示を比較すると、旧区画の実音だけが公共字幕から消えている。","talk":[["ミオ","壊れてない。ここだけ、はじめから表示の外なんだ。","thought"],["トト","『無人』って、誰が決めたの？","low"]]},{"type":"pipe","sfx":"……私の声？","caption":"昨夜のミオの録音。「ここに人がいる……なんで見えないの！」。転送の操作音、そして整備蓋が落ちる音。","talk":[["トト","これ、昨日のミオだ。","surprised"],["ミオ","……自分の声なのに、知らない人みたい。","low"]]}]},
+{"title":"昨日の嘘の意味","short":"真相","tag":"ACT 04 · THE OTHER SIDE OF THE LIE","heading":"空き家に動かしたのは、<b>隠すためじゃない。</b>","panels":[{"type":"map","sfx":"地下 → 表通り","caption":"登録外の地下では三打が見えない。空き家の壁だけは表通りから見える。昨夜のミオは何をしようとした？","talk":[["トト","助け声を空き家へ……なんで？","thought"],["ミオ","表示できる場所は、ここしかなかったのか。","thought"]]},{"type":"firstsign","sfx":"最初の「カン！」","caption":"昔の救助では、音の真下でなく救助員が通れる階段に手書きの札を置いた。人が文字を動かすことが、技の始まりだった。","talk":[["トト","最初の人も場所をずらしてる！","surprised"],["ミオ","真実は音だけじゃない。見た人が動けなきゃ、届かない。","thought"]]},{"type":"reflection","caption":"昨夜のミオは救難音を消したのではない。地上から一度も見えなかった声を、見える位置へ出したのだ。","talk":[["トト","嘘の場所に置いて、本当のSOSを届けたんだ！","joy"],["ミオ","……昨日の私、危なっかしい。でも、やろうとしたことは分かった。","smile"]]}]},
+{"title":"誰が真実を見るか","short":"選択","tag":"ACT 05 · WHO SEES THE TRUTH","heading":"誰もいないはずの場所から、<b>人が帰ってくる。</b>","panels":[{"type":"rescue","sfx":"地下の三人","caption":"作業名簿は4名。地上へ出たのはエマだけ。残る三人を助けるには、見える字幕で誰かの行動を変えなければならない。","talk":[["エマ","残り三人。無理に開けたら崩れる。","stern"],["ミオ","大勢に見せるか、巡回員と先に確かめるか……あなたが決めて。","thought"]]},{"type":"morning","sfx":"コツ、コツ……","caption":"安全を確かめた出口から、三人が歩いて出てくる。地図には『無人』。でも、確かに足音がする。","talk":[["トト","三人出てきた！　……母ちゃんの靴もびしょびしょ！","joy"],["エマ","いまそれ言う!?　……無事でよかった。","stern"],["ミオ","昨日は見せる場所を探した。今日は、見た人が何をするかだね。","smile"]]},{"type":"kitchen","sfx":"コン、コン！","caption":"翌朝、エマが三打。トトがいつもの二打で返す。ミオの端末には、別の旧区画にも字幕にならない音が点々と残っている。","talk":[["エマ","ご飯の返事は、口でして！","stern"],["トト","母ちゃんが三回叩くからでしょ！","joy"],["ミオ","……まだ文字になってない音がある。今度は自分で聞きに行こう。","thought"]]}]}
 ];
 const $=id=>document.getElementById(id);
 const safe=t=>String(t).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll('"',"&quot;").replaceAll(">","&gt;");
@@ -76,19 +51,38 @@ chapters.forEach((chapter,i)=>{
  button.innerHTML='<small>第'+(i+1)+'幕</small><strong>'+safe(chapter.short)+'</strong>';
  button.addEventListener("click",()=>showPage(i));strip.appendChild(button);
 });
+function routeOutcome(){
+ if(route==='public')return '【公開を選択】通りの人も三人の帰還を目撃。誰もいないという街の表示を、みんなが疑い始めた。音：'+routeSound;
+ if(route==='guard')return '【現場確認を選択】巡回員が三人の帰還を証言。静かな救出になったが、後日、旧区画を調査する仕事が残った。音：'+routeSound;
+ return 'まだあなたの結末ではありません。先に字幕を動かして、誰にこの事実を見せるか決めてください。';
+}
+/** Display distinct witnesses to the incident for the chosen publicity level. */
+function updateWitnessCut(){
+ const host=$("comic-play");
+ if(!host)return;
+ let el=$("witness-cut");
+ if(!route){el?.remove();return;}
+ if(!el){el=document.createElement("section");el.id="witness-cut";host.after(el);}
+ el.className="witness-cut "+route;
+ if(route==="public"){
+  el.innerHTML="<strong>表通りで、何人もの目が地図の間違いを見た</strong><p>近くの店員が『無人の地下から、人が出てきた……』と驚き、駆け寄って荷物を受け取る。三人の足音が通りに広がる。</p>";
+ }else{
+  el.innerHTML="<strong>巡回員が、目撃した事実を記録した</strong><p>巡回員は作業名簿を開き、四人全員に印を付ける。『安全は確認した。明日、地図の方を調べる』。通りはまだ静かなまま。</p>";
+ }
+}
 function showPage(next){
  const target=Math.max(0,Math.min(chapters.length-1,next));
  page=target;const current=chapters[page];
- const pivot=page===2||page===3?2:1;
+ const pivot=1;
  const opening=current.panels.slice(0,pivot).map((panel,i)=>panelMarkup(panel,i)).join("");
  const remainder=current.panels.slice(pivot).map((panel,i)=>panelMarkup(panel,i+pivot)).join("");
- $("paper-stage").innerHTML='<header class="act-header"><span>'+safe(current.tag)+'</span><h2>'+current.heading+'</h2></header><div class="comic-grid">'+opening+'</div>'+(page<4?'<div class="comic-play" id="comic-play"></div>':'')+'<div class="comic-grid followup-grid">'+remainder+'</div>';
- if(page<4)mountToy(page+1,$("comic-play"),(selected,sound)=>{route=selected;routeSound=sound;});
+ $("paper-stage").innerHTML='<header class="act-header"><span>'+safe(current.tag)+'</span><h2>'+current.heading+'</h2></header><div class="comic-grid">'+opening+'</div>'+(page<5?'<div class="comic-play" id="comic-play"></div>':'')+'<div class="comic-grid followup-grid">'+remainder+'</div>';
+ if(page<5)mountToy(page+1,$("comic-play"),(selected,sound)=>{route=selected;routeSound=sound;const note=document.querySelector('.chosen-note');if(note)note.textContent=routeOutcome();if(page===4)updateWitnessCut();});
  if(page===4){
-  if(!route){const banner=document.createElement("p");banner.className="unplayed-banner";banner.textContent="この結末は参考演出です。第4幕で二つ目の字幕まで動かすと、あなたの選んだ経路の結末になります。";$("paper-stage").querySelector(".act-header").after(banner);}
   const note=document.createElement("p");note.className="chosen-note";
-  note.textContent=route?(route==="workshop"?"選んだ工房側から三人が帰った。あの「"+routeSound+"」はまだ車輪のそばで鳴る。":"選んだ水路側から三人が帰った。あの「"+routeSound+"」はまだ金具のそばで鳴る。"):"これは結末の見本。第4幕で実際に新しい字幕を動かすと、あなたの選択がここへ残る。";
+  note.textContent=routeOutcome();
   $("paper-stage").appendChild(note);
+  updateWitnessCut();
  }
  [...strip.children].forEach((b,i)=>{b.setAttribute("aria-current",i===page?"step":"false");});
  $("back").disabled=page===0;$("forward").textContent=page===chapters.length-1?"第1幕に戻る ↻":"次の幕 →";
@@ -118,4 +112,4 @@ $("paper-stage").addEventListener("touchend",e=>{
 window.addEventListener("hashchange",()=>{const match=/#act-(\d+)/.exec(location.hash);if(match)showPage(Number(match[1])-1);});
 const match=/#act-(\d+)/.exec(location.hash);showPage(match?Number(match[1])-1:0);
 /** ブラウザQA専用の読み取りスナップショット。 */
-Object.defineProperty(window,"__comicSnapshot",{value:()=>({act:page+1,total:chapters.length,panels:$("paper-stage").querySelectorAll("[data-panel]").length,route:route,choiceVisible:Boolean($("toy-chip")),toy:toyState(page+1)})});
+Object.defineProperty(window,"__comicSnapshot",{value:()=>({act:page+1,total:chapters.length,panels:$("paper-stage").querySelectorAll("[data-panel]").length,route:route,choiceVisible:Boolean($("toy-chip")||$("knock-once")),toy:toyState(page+1)})});

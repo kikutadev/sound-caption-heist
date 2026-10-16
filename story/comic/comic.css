@@ -86,3 +86,30 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:f
 @keyframes metal-shift{from{transform:rotate(0deg)}to{transform:rotate(-18deg) translateY(-15px)}}
 @media(max-width:600px){.toy-prop,.toy-gate{bottom:32%;font-size:11px;min-width:58px;padding:7px}.toy-prop.cart{left:8%}.toy-prop.canal{right:6%}.toy-gate{right:8%}}
 @media(prefers-reduced-motion:reduce){.toy-prop{animation:none!important}}
+
+/* v2.4 mystery evidence fields: placements are legible on narrow screens. */
+.mystery-map .mystery-position-0{top:15px;right:8%;left:auto;bottom:auto}
+.mystery-map .mystery-position-1{bottom:12px;left:5%;top:auto;right:auto}
+.mystery-map .mystery-position-2{bottom:12px;right:5%;top:auto;left:auto}
+.mystery-map .toy-chip{top:31%;left:44%;transform:translateX(-50%)}
+.mystery-visual{position:absolute;z-index:1;bottom:36%;left:50%;transform:translateX(-50%);white-space:nowrap;border:1px dashed #f1c98e99;border-radius:5px;padding:8px 13px;font-weight:800;font-size:12px;color:#f2d7a7;background:#152f3fb9;max-width:95%;text-align:center}
+.mystery-visual.active{background:#36594c;color:#ddf7db;border-color:#b8dda7}
+.toy-map[data-phase="sound"] .toy-chip{background:#e2f1bd;color:#314a3a;box-shadow:0 5px 20px #b1eda788}
+.toy-map[data-phase="complete"] .toy-crew{background:#57846d;transform:translate(-130px,-28px)}
+@media(max-width:600px){
+.mystery-map .mystery-position-0{top:13px;right:3%}
+.mystery-map .mystery-position-1{bottom:12px;left:2%}
+.mystery-map .mystery-position-2{bottom:12px;right:2%}
+.mystery-map .toy-chip{top:38%;left:50%;font-size:20px}
+.mystery-visual{bottom:33%;font-size:10px;padding:5px 9px}
+}
+
+.mystery-map .toy-actor{left:12%;bottom:42%}
+.mystery-map .toy-crew{left:74%;bottom:42%}
+.mystery-map .toy-actor.shifted{transform:translate(32px,-16px)}
+.mystery-map .toy-crew.shifted{transform:translate(-40px,-20px)}
+.witness-cut{margin:10px;background:#274451;border:1px solid #a4c2bb;border-radius:6px;padding:15px 21px;font-size:13px;line-height:1.75;color:#f2ead4}
+.witness-cut strong{font:800 19px "Shippori Mincho",serif;display:block;margin-bottom:5px;color:#f4cea1}
+.witness-cut.public{background:#65543e;border-color:#edc487}
+.witness-cut.guard{background:#234653;border-color:#8eb7bc}
+@media(max-width:600px){.mystery-map .toy-actor{left:4%;bottom:43%}.mystery-map .toy-crew{left:72%;bottom:43%;font-size:10px}.mystery-map .toy-target{max-width:45%}.witness-cut{margin:6px;padding:12px;font-size:11px}.witness-cut strong{font-size:15px}}
