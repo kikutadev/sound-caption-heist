@@ -1,13 +1,7 @@
 import {mountToy,toyState} from "./microplay.js";
 import {portrait} from "./portraits.js";
 /** 音の字幕を「読む」のではなく、人の判断が変わる瞬間を紙芝居として実演する。 */
-const chapters=[
-{"title":"空き家のSOS","short":"異常","tag":"ACT 01 · A MISSING PERSON","heading":"『無人』の地下から、<b>三打のSOS。</b>","panels":[{"type":"street","sfx":"カン、カン……","caption":"音字塔の地図では無人。閉鎖路地では今日も助け声が鳴る。","talk":[["トト","ねえ、あれ聞こえた？　絶対に人がいる！","urgent"],["ミオ","地図だと無人。……音の方は、そう言ってないね。","thought"]]},{"type":"map","sfx":"地下 → 空き家","caption":"実際の三打は地下。人に見える音字幕だけ、空き家の壁へ出る。","talk":[["トト","下から聞こえたのに、字は上!?","surprised"],["ミオ","三打だけだ。誰かがわざと動かした？","thought"]]},{"type":"street","caption":"一晩の記憶がないミオ。まだ、この字幕を動かしたのが誰か知らない。","talk":[["トト","もう一回鳴るまで待つ？","urgent"],["ミオ","待たない。先に履歴を見よう。","smile"]]}]},
-{"title":"犯人は昨日の私","short":"署名","tag":"ACT 02 · THE NAME IN THE LOG","heading":"SOSを動かしたのは、<b>昨日の私。</b>","panels":[{"type":"map","sfx":"23:47 — ミオ","caption":"昨夜の履歴に「地下SOS → 空き家」。実行者はミオ。昨晩の数時間だけ、本人は覚えていない。","talk":[["トト","犯人見つけた。ミオ！","surprised"],["ミオ","本人が取り調べるんだから、逃がしてよ。……何したんだ、私。","dry"]]},{"type":"pipe","sfx":"コン、コン！","caption":"管を三回叩くと二回だけ返る。少年には、その返事をする人が分かっていた。","talk":[["トト","母ちゃんの返事だ！　相変わらず二回だけ！","joy"],["ミオ","安心してから悪口にするの、早いね。","smile"]]},{"type":"rescue","caption":"側通路からエマは脱出。だが隔壁の向こうには、作業名簿に載った三人が残る。","talk":[["エマ","トト！　その靴で走るな！　……奥に三人、まだいる。","stern"],["ミオ","昨日の私、あなたを知ってた？","low"],["エマ","あんたが一番怒ってた。『なんで字が出ない』って。","thought"]]}]},
-{"title":"文字にならない音","short":"空白","tag":"ACT 03 · SILENCE ON THE MAP","heading":"音は鳴っている。<b>なのに字がない。</b>","panels":[{"type":"silent","sfx":"コツ、コツ……","caption":"登録された通りでは足音が字幕になる。旧地下区画では足音が鳴っても、表示は真っ白。","talk":[["トト","今、誰か歩いてたよ！　……字は？","surprised"],["ミオ","私の工具も聞こえてる。なんで表示しない？","thought"]]},{"type":"map","sfx":"記録：あり／公開：なし","caption":"プレイヤーが原音と公開表示を比較すると、旧区画の実音だけが公共字幕から消えている。","talk":[["ミオ","壊れてない。ここだけ、はじめから表示の外なんだ。","thought"],["トト","『無人』って、誰が決めたの？","low"]]},{"type":"pipe","sfx":"……私の声？","caption":"昨夜のミオの録音。「ここに人がいる……なんで見えないの！」。転送の操作音、そして整備蓋が落ちる音。","talk":[["トト","これ、昨日のミオだ。","surprised"],["ミオ","……自分の声なのに、知らない人みたい。","low"]]}]},
-{"title":"昨日の嘘の意味","short":"真相","tag":"ACT 04 · THE OTHER SIDE OF THE LIE","heading":"空き家に動かしたのは、<b>隠すためじゃない。</b>","panels":[{"type":"map","sfx":"地下 → 表通り","caption":"登録外の地下では三打が見えない。空き家の壁だけは表通りから見える。昨夜のミオは何をしようとした？","talk":[["トト","助け声を空き家へ……なんで？","thought"],["ミオ","表示できる場所は、ここしかなかったのか。","thought"]]},{"type":"firstsign","sfx":"最初の「カン！」","caption":"昔の救助では、音の真下でなく救助員が通れる階段に手書きの札を置いた。人が文字を動かすことが、技の始まりだった。","talk":[["トト","最初の人も場所をずらしてる！","surprised"],["ミオ","真実は音だけじゃない。見た人が動けなきゃ、届かない。","thought"]]},{"type":"reflection","caption":"昨夜のミオは救難音を消したのではない。地上から一度も見えなかった声を、見える位置へ出したのだ。","talk":[["トト","嘘の場所に置いて、本当のSOSを届けたんだ！","joy"],["ミオ","……昨日の私、危なっかしい。でも、やろうとしたことは分かった。","smile"]]}]},
-{"title":"誰が真実を見るか","short":"選択","tag":"ACT 05 · WHO SEES THE TRUTH","heading":"誰もいないはずの場所から、<b>人が帰ってくる。</b>","panels":[{"type":"rescue","sfx":"地下の三人","caption":"作業名簿は4名。地上へ出たのはエマだけ。残る三人を助けるには、見える字幕で誰かの行動を変えなければならない。","talk":[["エマ","残り三人。無理に開けたら崩れる。","stern"],["ミオ","大勢に見せるか、巡回員と先に確かめるか……あなたが決めて。","thought"]]},{"type":"morning","sfx":"コツ、コツ……","caption":"安全を確かめた出口から、三人が歩いて出てくる。地図には『無人』。でも、確かに足音がする。","talk":[["トト","三人出てきた！　……母ちゃんの靴もびしょびしょ！","joy"],["エマ","いまそれ言う!?　……無事でよかった。","stern"],["ミオ","昨日は見せる場所を探した。今日は、見た人が何をするかだね。","smile"]]},{"type":"kitchen","sfx":"コン、コン！","caption":"翌朝、エマが三打。トトがいつもの二打で返す。ミオの端末には、別の旧区画にも字幕にならない音が点々と残っている。","talk":[["エマ","ご飯の返事は、口でして！","stern"],["トト","母ちゃんが三回叩くからでしょ！","joy"],["ミオ","……まだ文字になってない音がある。今度は自分で聞きに行こう。","thought"]]}]}
-];
+const chapters=[{"title":"空き家から三打","short":"SOS","tag":"ACT 01 · THE WRONG PLACE","heading":"誰もいない場所から、<b>返事がある。</b>","panels":[{"type":"street","sfx":"カン……カン……","caption":"誰もいないと記録された旧街区。音は地下、字幕は空き家に浮かぶ。","talk":[["トト","また三回だ！　絶対に誰かいる！","urgent"],["ミオ","この字、音源と違う場所にある……。","thought"]]},{"type":"map","sfx":"地下 → 空き家","caption":"プレイヤーが足音の字幕を動かせば巡回員はつられて振り向く。でも、SOSは人が動かした痕跡が見当たらない。","talk":[["トト","今の、ミオがやったんだよね？　あっちも？","surprised"],["ミオ","違う。あの三打はまだ触ってない。","thought"]]},{"type":"pipe","sfx":"カン、カン、カン","caption":"地下の管がかすかに震えている。聞こえないはずの側から、小さなSOSが来る。","talk":[["トト","管なら返事できそう。もう三回叩こう！","urgent"],["ミオ","叩く前に手を挟まないでね。","dry"]]}]},{"title":"向こうの音が聞こえない","short":"境界","tag":"ACT 02 · THE SILENCE","heading":"鳴っているのに、<b>聞こえない。</b>","panels":[{"type":"pipe","sfx":"カン！ カン！ カン！","caption":"地下の管へ三回。向こうから二回だけ返事。トトが飛び上がった。","talk":[["トト","母ちゃんだ！　二回なのは母ちゃん！","joy"],["ミオ","返事で家族が分かるの、便利だね。","dry"]]},{"type":"silent","sfx":"カン！ → ……","caption":"隔壁のこちらでは鐘の音が聞こえる。向こうで同じ鐘を鳴らしても、音は届かない。それなのに文字だけは見える。","talk":[["トト","いま鳴らしたよ！　字だけ飛んできた！","surprised"],["ミオ","遠くまで耳が届いてるんじゃない。文字が届いてるんだ。","thought"]]},{"type":"rescue","sfx":"ギギッ","caption":"エマは自分で出口を開き、巡回員が安全を確かめて迎える。離れた作業場との連絡が長く途絶えていたことを話す。","talk":[["エマ","こらトト！ 靴が濡れてる！","stern"],["トト","それ、会えたときに言うこと!?","joy"],["ミオ","向こうの鐘を、いつから聞いてない？","thought"]]}]},{"title":"世界へ続く文字","short":"塔","tag":"ACT 03 · THE FIRST NETWORK","heading":"字幕は、音が届かない土地への<b>橋だった。</b>","panels":[{"type":"silent","sfx":"コツ、コツ","caption":"音のない境界へ字幕を置いても耳では聞こえない。しかし旧中継器を通すと、誰かの目に届き、返事が帰ってくる。","talk":[["トト","字なら行ける！　もっと向こうにも！","joy"],["ミオ","……実音は動かないのに、会話はできる。","thought"]]},{"type":"firstsign","sfx":"むこうの町へ","caption":"旧塔の連絡図には、街の外へ伸びる音字塔の線。昔の塔は足音案内より先に、遠くの人のために建てられていた。設計図には、塔を囲む黄色い輪と消された鐘の印。","talk":[["トト","街の外にも塔がある。まだ誰か使ってるかな？","surprised"],["ミオ","光ったら分かる。試そう。","smile"]]},{"type":"tower","sfx":"ガラン！","caption":"作業員が実際に鐘を打つと新しい字幕が生まれ、遠い塔に小さな灯りがついた。何年も地図から消えていた場所に、今も反応がある。","talk":[["トト","光った！　地図の外まで！","joy"],["ミオ","記録じゃない。今、何かが反応した。","thought"]]}]},{"title":"知らない人の返事","short":"返事","tag":"ACT 04 · SOMEONE IS THERE","heading":"自動応答？ それとも、<b>本当に誰かいる？</b>","panels":[{"type":"tower","sfx":"コン、コン","caption":"遠方から『受信しました』。三回鳴らすと二回返る。けれど、古い自動応答かもしれない。","talk":[["トト","返事が来た。絶対、人がいる！","urgent"],["ミオ","録音でも返せる。驚くようなことを送ってみよう。","thought"]]},{"type":"map","sfx":"カン！ カン！ カン！ カン！","caption":"トトがわざと四回叩く。向こうから、いま初めて書いたような文字が返る。","talk":[["トト","四回も叩くな!?　怒られた！","joy"],["ミオ","知らない人にまで小言をもらう才能だね。","dry"]]},{"type":"morning","sfx":"そっちは誰？","caption":"塔を止めるとこちらの鐘が聞こえ、遠い字幕は消える。再起動すると文字が届き、鐘は弱まる。『声の橋』そのものが、周りの音を奪っていた。","talk":[["トト","塔を止めたら、鐘が聞こえる！","surprised"],["ミオ","声を遠くに送るほど、近くが静かになる……。","thought"]]}]},{"title":"どこへ届ける？","short":"つなぐ","tag":"ACT 05 · THE RECONNECTED WORLD","heading":"向こうにも人がいる。<b>次は誰へ声を届ける？</b>","panels":[{"type":"fork","sfx":"カン！","caption":"二つの連絡路。街の鐘楼を強く使えば遠くへ長く届くが広場の鐘が弱まる。丘を弱く使えば、街の音を残したまま短い返事が届く。","talk":[["トト","鐘が聞こえなくなるのは嫌。でも向こうの人にも『おはよう』って言いたい！","urgent"],["ミオ","どこに音を残すか、自分で決めよう。","smile"]]},{"type":"tower","sfx":"ガラン！／ギギッ！","caption":"選んだ側の作業者が本物の鐘や金具を動かす。新しく生まれた音字幕をもう一度送ると、地図の外の塔が点灯した。","talk":[["エマ","音が鳴った！ ほら、新しい字があるよ。","joy"],["ミオ","今度は、次の人に。","smile"]]},{"type":"sunrise","sfx":"カーン……","caption":"朝。中継を止めれば近くの鐘が聞こえ、動かせば地図の外から文字が来る。ミオたちは二つを両立させる方法を探し始める。","talk":[["トト","音も残したい。遠くの返事もほしい！","low"],["ミオ","両方できる方法、次は私たちが作ろう。","thought"]]}]}];
 const $=id=>document.getElementById(id);
 const safe=t=>String(t).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll('"',"&quot;").replaceAll(">","&gt;");
 
@@ -22,7 +16,38 @@ function illustration(type){
  const pipe='<rect width="960" height="530" fill="#1b2832"/>'+brick+'<g stroke="#667784" fill="none" stroke-width="24"><path d="M0 210H940V310H0"/><path d="M345 0V330M690 0V310"/></g><path d="M0 210H940V310H0" stroke="#d0ae74" stroke-opacity=".5" fill="none" stroke-width="3"/>'+bolts;
  const arch='<rect width="960" height="530" fill="#263443"/><path d="M70 500V180Q75 25 480 20Q880 25 890 180V500" fill="#131e2d" stroke="#7e756d" stroke-width="45"/><path d="M340 495V240L480 130L620 240V495" fill="#182d3e"/>'+brick;
  const fig='<g fill="#0b1724" stroke="#b59268" stroke-width="3"><circle cx="510" cy="301" r="24"/><path d="M483 325l-30 100h95l-16-100Z"/></g>';
+
+ const towers='<rect width="960" height="530" fill="#142536"/>'+
+  '<path d="M0 430Q210 300 410 410Q610 270 960 415V530H0Z" fill="#243e4c"/>'+
+  '<path d="M0 472Q215 375 440 454Q650 366 960 435V530H0Z" fill="#182e3f"/>'+
+  [135,330,535,755,905].map((x,i)=>{
+   const y=[248,206,278,175,238][i],col=i===3?"#f6ca83":"#89bfc2";
+   return '<g><path d="M'+x+' 495V'+y+'M'+(x-29)+' '+(y+40)+'L'+x+' '+(y-43)+'L'+(x+29)+' '+(y+40)+'Z" fill="#1b2c3a" stroke="#678695" stroke-width="5"/><rect x="'+(x-11)+'" y="'+(y-45)+'" width="22" height="16" fill="'+col+'"/><circle cx="'+x+'" cy="'+(y-40)+'" r="23" fill="none" stroke="'+col+'" opacity="'+(i===3?.85:.25)+'" stroke-width="4"/><path d="M'+(x-29)+' 495L'+x+' '+y+'L'+(x+29)+' 495" fill="none" stroke="#527080" stroke-width="4"/></g>'
+  }).join("")+
+  '<path d="M135 211Q310 90 535 240T905 200" fill="none" stroke="#e0c58e" stroke-width="5" stroke-dasharray="11 17" opacity=".55"/>'+
+  '<circle cx="755" cy="135" r="47" fill="#f8dc9b" opacity=".16"/>'+
+  '<g fill="#d6d9d0" font-size="24" font-weight="700"><text x="150" y="96">街</text><text x="780" y="96">地図の向こう</text></g>';
+ const station='<rect width="960" height="530" fill="#182d39"/>'+
+  '<path d="M0 120Q480 -100 960 120V530H0Z" fill="#203746" stroke="#547381" stroke-width="17"/>'+
+  '<path d="M300 0V530M640 0V530" stroke="#527180" stroke-opacity=".45" stroke-width="20"/>'+
+  '<path d="M480 10V530" stroke="#f6cb85" stroke-width="10" stroke-dasharray="20 18"/>'+
+  '<path d="M0 425H960" stroke="#89a5a8" stroke-width="16"/>'+
+  '<g font-size="31" font-weight="800" fill="#f3daa4"><text x="70" y="100">聞こえる</text><text x="660" y="100">文字だけ届く</text></g>'+
+  '<circle cx="195" cy="275" r="68" fill="none" stroke="#fac782" stroke-width="7"/>'+
+  '<circle cx="765" cy="275" r="68" fill="none" stroke="#92d3bd" stroke-width="7" stroke-dasharray="13 15"/>'+
+  '<path d="M300 280H640" stroke="#d2bf8f" stroke-width="6" stroke-dasharray="10 16"/>';
+ const sunrise='<rect width="960" height="530" fill="#856b6e"/>'+
+  '<path d="M0 0H960V290H0Z" fill="#9b9292"/>'+
+  '<circle cx="620" cy="235" r="150" fill="#ffe0ae" opacity=".8"/>'+
+  '<path d="M0 420Q220 280 390 340Q660 210 960 355V530H0Z" fill="#4d6170"/>'+
+  '<path d="M0 472Q250 365 540 415T960 395V530H0Z" fill="#2b4759"/>'+
+  '<g fill="#1d3342" stroke="#cbab7b" stroke-width="5"><path d="M120 440L160 198L205 440Z"/><path d="M460 440L500 230L540 440Z"/><path d="M790 430L830 170L875 430Z"/></g>'+
+  '<g stroke="#fff0bb" fill="#fff1c2"><circle cx="160" cy="196" r="12"/><circle cx="500" cy="229" r="10"/><circle cx="830" cy="168" r="14"/></g>'+
+  '<path d="M160 195Q470 12 830 165" fill="none" stroke="#e6c58e" stroke-width="7" stroke-dasharray="14 15"/>';
  const content={
+ tower:towers,
+ station:station,
+ sunrise:sunrise,
  street:street+signs+'<rect x="715" y="235" width="141" height="204" fill="#0d1827" stroke="#ac8c66" stroke-width="5"/><text x="785" y="461" text-anchor="middle" fill="#ffda9a" font-size="17">空き家</text>',
  map:'<rect width="960" height="530" fill="#1a2b36"/><g stroke="#5f9c9d" stroke-opacity=".3">'+Array.from({length:15},(_,i)=>'<path d="M'+(i*70)+' 0V530"/><path d="M0 '+(i*45)+'H960"/>').join("")+'</g><path d="M425 453L630 130" stroke="#a7c8c1" stroke-width="6" stroke-dasharray="10 12"/><circle cx="416" cy="440" r="30" fill="#b5e8d1"/><circle cx="630" cy="130" r="34" fill="#f2ba76"/><text x="416" y="504" text-anchor="middle" fill="#b5e8d1" font-size="25">原音：地下</text><text x="630" y="95" text-anchor="middle" fill="#f2ba76" font-size="25">字幕：空き家</text><path d="M510 405L490 185L630 130" stroke="#f2ba76" stroke-width="5" stroke-dasharray="12 10" fill="none"/>',
  pipe:pipe+'<g fill="none" stroke="#ffcf8b"><circle cx="700" cy="290" r="76" stroke-width="4" opacity=".8"/><circle cx="700" cy="290" r="128" opacity=".4" stroke-width="4"/></g>',
@@ -52,23 +77,19 @@ chapters.forEach((chapter,i)=>{
  button.addEventListener("click",()=>showPage(i));strip.appendChild(button);
 });
 function routeOutcome(){
- if(route==='public')return '【公開を選択】通りの人も三人の帰還を目撃。誰もいないという街の表示を、みんなが疑い始めた。音：'+routeSound;
- if(route==='guard')return '【現場確認を選択】巡回員が三人の帰還を証言。静かな救出になったが、後日、旧区画を調査する仕事が残った。音：'+routeSound;
- return 'まだあなたの結末ではありません。先に字幕を動かして、誰にこの事実を見せるか決めてください。';
+ if(route==='city')return '【街の鐘楼】広場に遠い集落の長い返事が届き、人々が中継を再開した。近くの鐘の音は弱まった。音：'+routeSound;
+ if(route==='hill')return '【丘の旧塔】弱い中継で丘の向こうの塔が点灯。返事は短いが、街の鐘は聞こえ続けた。音：'+routeSound;
+ return 'まだあなたの結果ではありません。どの中継路をつなぐか選び、次の字幕を送ってください。';
 }
 /** Display distinct witnesses to the incident for the chosen publicity level. */
 function updateWitnessCut(){
- const host=$("comic-play");
- if(!host)return;
+ const host=$("comic-play");if(!host)return;
  let el=$("witness-cut");
  if(!route){el?.remove();return;}
  if(!el){el=document.createElement("section");el.id="witness-cut";host.after(el);}
- el.className="witness-cut "+route;
- if(route==="public"){
-  el.innerHTML="<strong>表通りで、何人もの目が地図の間違いを見た</strong><p>近くの店員が『無人の地下から、人が出てきた……』と驚き、駆け寄って荷物を受け取る。三人の足音が通りに広がる。</p>";
- }else{
-  el.innerHTML="<strong>巡回員が、目撃した事実を記録した</strong><p>巡回員は作業名簿を開き、四人全員に印を付ける。『安全は確認した。明日、地図の方を調べる』。通りはまだ静かなまま。</p>";
- }
+ el.className="witness-cut "+(route==="city"?"public":"guard");
+ if(route==="city")el.innerHTML="<strong>街の広場で、新しい返事が浮かぶ</strong><p>店員が店の戸を開け、子どもが『向こうの人だ！』と指を差す。住民が広場に集まった。届いた文字は『こっちはパンを焦がした！ そっちの朝ごはんは？』。鐘は静かになったが、遠い暮らしがそこにあった。</p>";
+ else el.innerHTML="<strong>丘の外側にも、もう一つ灯り</strong><p>地図で途絶したはずの二つ目の塔が点灯。遠い町から『受け取った。次の集落にも回すよ！』と短く返事が来た。街の鐘はまだ聞こえる。</p>";
 }
 function showPage(next){
  const target=Math.max(0,Math.min(chapters.length-1,next));

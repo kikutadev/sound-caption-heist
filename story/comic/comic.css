@@ -113,3 +113,27 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:f
 .witness-cut.public{background:#65543e;border-color:#edc487}
 .witness-cut.guard{background:#234653;border-color:#8eb7bc}
 @media(max-width:600px){.mystery-map .toy-actor{left:4%;bottom:43%}.mystery-map .toy-crew{left:72%;bottom:43%;font-size:10px}.mystery-map .toy-target{max-width:45%}.witness-cut{margin:6px;padding:12px;font-size:11px}.witness-cut strong{font-size:15px}}
+
+/* World relay play board: leave the center clear for the draggable sound caption. */
+.mystery-map .toy-actor{top:42%;bottom:auto;left:3%;max-width:20%;font-size:10px}
+.mystery-map .toy-crew{top:42%;bottom:auto;left:auto;right:3%;max-width:20%;font-size:10px}
+.mystery-map .toy-actor.shifted{transform:translate(0,-10px)}
+.mystery-map .toy-crew.shifted{transform:translate(0,-10px)}
+.mystery-map .toy-chip{left:50%;top:39%}
+.mystery-map .mystery-visual{top:64%;bottom:auto;left:50%;width:max-content;max-width:90%;white-space:normal}
+.mystery-map .mystery-position-0{top:10px;right:3%}
+.mystery-map .mystery-position-1{bottom:9px;left:3%}
+.mystery-map .mystery-position-2{bottom:9px;right:3%}
+@media(max-width:600px){
+ .mystery-map .toy-actor{left:3%;top:40%;font-size:9px;padding:5px 6px}
+ .mystery-map .toy-crew{right:3%;top:40%;font-size:9px;padding:5px 6px}
+ .mystery-map .toy-chip{top:39%;font-size:19px;min-width:85px}
+ .mystery-map .mystery-visual{top:63%;font-size:9px;max-width:80%;padding:5px 7px}
+}
+
+/* The player's first and second caption move visibly activate different relay sections. */
+.relay-progress{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;background:#132b37;border-bottom:1px solid #4d7380;padding:12px 6px}
+.relay-node{border:1px solid #556d78;color:#96abb2;background:#223b49;border-radius:20px;padding:7px 11px;font-weight:800;font-size:12px}
+.relay-node.lit{background:#385a4d;color:#d4f6d5;border-color:#a8ddaa;box-shadow:0 0 15px #76cd8d50}
+.relay-wire{color:#6a818a;font-size:18px}
+.relay-wire.lit{color:#e4c486;text-shadow:0 0 8px #ead28b}
