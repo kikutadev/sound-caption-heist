@@ -54,22 +54,47 @@ function apply(act,st,key,onComplete){
    }
    st.route=key;st.phase="new-sound";st.success=false;st.actor=true;
    st.sound=key==="city"?"ガラン！":"ギギッ！";
-   st.note=key==="city"?"鐘楼の作業員が本物の鐘を鳴らし『ガラン！』が生まれた。高出力の塔を使うと近くの音が薄れるが、遠くへ長い通信ができる。次の中継点へ送ろう。":"丘の旧塔で金具を外し『ギギッ！』が生まれた。弱い中継ならこちらの鐘の音が残り、遠くへは短い文字が届く。";
+   st.note=key==="city"?"鐘楼の作業員が本物の鐘を鳴らし『ガラン！』が生まれた。高出力にすると街の鐘は聞こえづらくなる。新字幕を次の塔へ！":"丘の旧塔で金具を外し『ギギッ！』が生まれた。短い中継でも送信中の鐘は弱くなる。新字幕を次の塔へ！";
    st.trace=["最初の字幕を移す",key==="city"?"鐘楼で実際に鐘を打つ":"丘の実物金具を動かす",st.sound+" が発生"];
    cue(key==="city"?"cart":"metal");
   }else if(st.phase==="new-sound"){
-   if(key==="broken"){st.error=true;st.note="危険な中継台を作業員が確かめ、手を止めた。新しい字を置き直せる。";st.trace.push("危険のため停止");return;}
-   st.phase="complete";st.success=true;
-   st.trace.push("新字幕を送る",st.route==="city"?"街の広場に遠い返事":"丘のさらに先の塔が点灯");
-   st.note=st.route==="city"?"『こっちはパンを焦がした！ そっちの朝ごはんは？』と遠い町の日常が広場に届いた。市民が集まる一方、鐘楼の音は薄くなった。":"丘の向こうに次の塔の灯り。『届いた、次へ回すよ』と短く返ってくる。街の鐘はまだ耳に聞こえる。";
-   cue("step");onComplete?.(st.route,st.sound);
+   if(key==="broken"){st.error=true;st.note="壊れた中継台には誰も近づかない。別の接続点を選ぼう。";st.trace.push("危険のため停止");return;}
+   st.phase="linked";st.success=false;
+   st.trace.push("新字幕を次の塔へ送信","遠い人から返事");
+   st.note=st.route==="city"?"遠い町から『こっちはパンを焦がした！』。広場のみんなが笑った。でも鐘はほとんど聞こえない。送り続けるしかない？":"丘の先で塔が点灯。『受け取った！』と短い返事。遠い人とつながれたが、送信中は近くの金具の音が弱まる。";
+   cue("reply");
+  }else if(st.phase==="linked"){
+   if(key==="continue"){
+    st.note="中継を続けると遠い文字は見える。でも近くの鐘はまだ聞こえない。ほかのやり方はない？";st.trace.push("連続送信：鐘の音は弱い");return;
+   }
+   if(key==="request"){
+    st.phase="ack";st.trace.push("こちらから三打で休止を確認");
+    st.note="ミオが『いったん休む。次は正午につなぐ。いい？』と話す。プレイヤーがその字幕と三打を中継すると、遠くから『コン、コン！　正午ね！』。相手が次の時間に同意した。";
+    cue("knockTriple");cue("reply");
+   }
+  }else if(st.phase==="ack"){
+   if(key==="keep"){
+    st.note="もう返事は受け取った。それでも塔を動かしている間は近くの鐘が弱い。";return;
+   }
+   if(key==="rest"){
+    st.phase="complete";st.success=true;
+    st.trace.push("二打を確認して休止","街の鐘が戻る！","正午に短く中継を再開する約束");
+    st.note=st.route==="city"?"塔を休ませると、広場の鐘が大きく鳴った！　遠い人の『パン焦がした』もみんなで読めた。町のみんなが次の短い中継を引き受けた。":"塔を休ませると、近くの鐘がはっきり聞こえた！　遠い人は次の時間に隣の集落へ合図を送る。街にも遠くにも、返事の順番ができた。";
+    cue("bell");cue("step");onComplete?.(st.route,st.sound);
+   }
   }
  }
 }
 
 /** 字幕を直接ドラッグする操作とボタン操作を、同じ判定に統一する。 */
 function renderPuzzle(act,host,st,onComplete){
- const scene=scenes[act],spots=act===5&&st.phase!=="ready"?continuation:act===4&&st.phase==="dilemma"?[["off","塔を停止"],["on","塔を再起動"]]:scene.spots;
+ const scene=scenes[act],
+ spots=act===5?(
+   st.phase==="ready"?scene.spots:
+   st.phase==="new-sound"?continuation:
+   st.phase==="linked"?[["continue","送信を続ける"],["request","三打＋『正午にまた話そう』を送る"]]:
+   st.phase==="ack"?[["keep","塔を動かしたまま"],["rest","返事を受け取り、塔を休ませる"]]:[]
+ ):act===4&&st.phase==="dilemma"?[["off","塔を停止"],["on","塔を再起動"]]:scene.spots;
  const word=act===5&&st.sound?st.sound:scene.sound;
  host.innerHTML='<section class="toy"><header><button type="button" data-audio class="toy-audio" aria-pressed="'+audioEnabled()+'">'+(audioEnabled()?"音 ON":"音 OFF")+'</button><span>YOUR TURN · '+act+'</span><h3>'+esc(scene.title)+'</h3><p>'+esc(scene.hint)+'</p></header><div class="toy-map mystery-map" data-act="'+act+'" data-phase="'+st.phase+'">'+
   '<div class="toy-source">実音の発生地点はそのまま</div>'+
@@ -77,8 +102,8 @@ function renderPuzzle(act,host,st,onComplete){
   '<div class="toy-crew '+(st.success&&act===5?"shifted":"")+'">'+(act===5?"遠い塔":act===3?"中継塔":"見ている人")+'</div>'+
   spots.map(([key,label],i)=>'<button type="button" class="toy-target mystery-target mystery-position-'+i+'" data-to="'+esc(key)+'"><b>'+esc(label)+'</b><small>'+(key==="broken"?"通れない":key==="far"?"耳には届かない":key==="four"?"定型でない入力":"調べる")+'</small></button>').join("")+
   '<button id="toy-chip" type="button" class="toy-chip">'+esc(word)+'<small>つかんで移す</small></button>'+
-  '<div class="mystery-visual '+(st.success?"active":"")+'">'+esc(act===5&&st.success?(st.route==="city"?"広場で返事が見える":"丘の向こうに灯りが増える"):act===4&&st.success?"塔は周囲の音を弱めている":act===3&&st.success?"地図の外の塔が点灯":st.note?"何が変わった？":"好きな場所へ動かす")+'</div></div>'+
-  (act===5?'<div class="relay-progress" aria-label="中継路の通電状態"><span class="relay-node lit">街</span><span class="relay-wire '+(st.route?"lit":"")+'">→</span><span class="relay-node '+(st.route?"lit":"")+'">'+(st.route==="hill"?"丘の塔":st.route==="city"?"鐘楼":"分岐")+'</span><span class="relay-wire '+(st.success?"lit":"")+'">→</span><span class="relay-node '+(st.success?"lit":"")+'">向こうの人</span></div>':'')+
+  '<div class="mystery-visual '+(st.success?"active":"")+'">'+esc(act===5?(st.success?"遠い返事も、街の鐘も！":st.phase==="linked"?"遠方はつながった／近くは静か":st.phase==="ack"?"二打の返事！　休止できる":"どこまで届く？"):act===4&&st.success?"塔は周囲の音を弱めている":act===3&&st.success?"地図の外の塔が点灯":st.note?"何が変わった？":"好きな場所へ動かす")+'</div></div>'+
+  (act===5?'<div class="relay-progress" aria-label="中継路の通電状態"><span class="relay-node lit">街</span><span class="relay-wire '+(st.route?"lit":"")+'">→</span><span class="relay-node '+(st.route?"lit":"")+'">'+(st.route==="hill"?"丘の塔":st.route==="city"?"鐘楼":"分岐")+'</span><span class="relay-wire '+(st.phase==="linked"||st.phase==="ack"||st.success?"lit":"")+'">→</span><span class="relay-node '+(st.phase==="linked"||st.phase==="ack"||st.success?"lit":"")+'" >向こうの人</span><span class="relay-local '+(st.success?"audible":"silent")+'">街の鐘：'+(st.success?"はっきり聞こえる":st.route?"音が弱い":"待機中")+'</span></div>':'')+
   '<div class="toy-actions">'+(act===5&&st.phase==="complete"?'<button data-reset type="button">別の経路も試す ↻</button>':spots.map(([key,label])=>'<button data-choice="'+esc(key)+'" type="button">'+esc(label)+'</button>').join(""))+'</div>'+
   '<p class="toy-result '+(st.error?"toy-error":"")+'" role="status" aria-live="polite">'+esc(st.note??"この文字を動かすと、どこで何が起きるだろう？")+'</p>'+
   '<div class="toy-steps">'+(st.trace??[]).map(t=>'<span>'+esc(t)+'</span>').join('<b>→</b>')+'</div></section>';

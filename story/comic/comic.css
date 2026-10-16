@@ -137,3 +137,11 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:f
 .relay-node.lit{background:#385a4d;color:#d4f6d5;border-color:#a8ddaa;box-shadow:0 0 15px #76cd8d50}
 .relay-wire{color:#6a818a;font-size:18px}
 .relay-wire.lit{color:#e4c486;text-shadow:0 0 8px #ead28b}
+
+/* Catharsis is player-earned. No final panels before the acknowledged, rested relay. */
+.comic-grid[hidden]{display:none!important}
+.relay-local{flex-basis:100%;text-align:center;border-radius:5px;padding:7px 9px;font-weight:900;font-size:12px}
+.relay-local.silent{color:#e1b5ae;background:#463b44;border:1px solid #a97777}
+.relay-local.audible{color:#e5f4c7;background:#315845;border:1px solid #a8d7a5;box-shadow:0 0 18px #aee4ac33}
+.toy-map[data-phase="complete"] .mystery-visual{background:#427159;border:1px solid #d2eeae;box-shadow:0 0 18px #a6e9ab}
+.toy-map[data-phase="ack"] .toy-chip{box-shadow:0 0 18px #ecca8590}

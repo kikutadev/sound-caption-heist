@@ -19,14 +19,15 @@ export function cue(type){
    sign:[[495,0,.11]],
    metal:[[160,0,.20],[104,.09,.26]],
    cart:[[100,0,.09],[135,.09,.09],[85,.18,.13],[115,.29,.09]],
-   step:[[420,0,.08],[540,.14,.11]]
+   step:[[420,0,.08],[540,.14,.11]],
+   bell:[[440,0,.70],[660,0,.52],[880,0,.37]]
   }[type]??[[230,0,.10]];
   for(const [freq,delay,length] of notes){
    const osc=ctx.createOscillator(),gain=ctx.createGain(),start=now+delay;
    osc.type=type==="cart"||type==="metal"?"sawtooth":"triangle";
    osc.frequency.setValueAtTime(freq,start);
    gain.gain.setValueAtTime(0.0001,start);
-   gain.gain.exponentialRampToValueAtTime(type==="cart"?0.027:0.10,start+.012);
+   gain.gain.exponentialRampToValueAtTime(type==="cart"?0.027:type==="bell"?0.038:0.10,start+.012);
    gain.gain.exponentialRampToValueAtTime(.0001,start+length);
    osc.connect(gain);gain.connect(ctx.destination);
    osc.start(start);osc.stop(start+length+.025);
