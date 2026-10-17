@@ -1,0 +1,15 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="theme-color" content="#122638"/><link rel="icon" href="data:,"/><title>音字泥棒 — ベルノアの朝 | 全編紙芝居</title><link rel="stylesheet" href="./style.css"/></head>
+<body><main class="shell">
+<header class="top"><div class="brand">音字泥棒 <small>ベルノアの朝</small></div><nav><a href="../pivot/index.html">旧試作</a><a href="../../index.html">ゲーム本編</a></nav></header>
+<section class="hero"><p class="eyebrow">6場面で完結する、音の文字の物語</p><h1>鐘が鳴る前に、<br/>『カーン』が遊んでいた。</h1><p>音の文字が生きている街、ベルノア。はじめて来たミオが朝市で触れた小さな生き物から、街の文字の秘密を見つける物語です。途中では、本当に音字をつまんで動かせます。</p><details class="guide"><summary>遊び方・物語の進め方</summary><p>各場面の文章と会話を読んでください。「試してみる」がある場面では選択・ドラッグ操作で結果が変わります。第６場面は自由操作。困ったらその場の操作説明や段階ヒントを使えます。説明を読むことは必須ではありません。戻る・やり直すこともできます。</p></details></section>
+<div class="progress"><span id="act">第一幕</span><span id="progress-text">01 / 6</span></div><div class="progress-track"><div id="progress-bar"></div></div>
+<nav class="scene-tabs" id="scene-tabs" aria-label="物語の場面"></nav>
+<article class="paper">
+  <div class="art" id="art" role="img" aria-label="物語の場面を描いたイラスト"></div>
+  <div class="story"><span class="chapter" id="chapter"></span><h2 id="scene-title"></h2><p id="story-lead" class="lead"></p><div id="dialogue" class="dialogue"></div></div>
+  <section id="interaction" class="interaction"><div class="interaction-title"><h3 id="prompt-title">あなたならどうする？</h3><p id="prompt"></p></div><div id="choice-buttons" class="choices"></div><div id="sandbox-holder"></div><div id="rhythm-holder"></div><div class="result" id="result" role="status" aria-live="polite"></div></section>
+</article>
+<div class="pagination"><button type="button" id="prev">← 前の場面</button><span id="current">01 / 6</span><button type="button" id="next">次の場面 →</button></div>
+<section id="ending" class="ending" hidden><span class="eyebrow">おしまい</span><h2>この街には、まだ聞いたことのない音がある。</h2><p id="ending-text"></p><div class="ending-nav"><button id="restart" type="button">最初から、別の朝を</button><button id="world-answer" type="button">世界観の答えを見る</button></div><div id="world-notes" class="world-notes" hidden></div></section>
+<footer class="foot">これは世界観とストーリーの独立した全編紙芝居です。既存ゲーム本体のステージと混同しないよう分離しています。</footer>
+</main><script type="module" src="./app.js"></script></body></html>

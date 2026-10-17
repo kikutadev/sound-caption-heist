@@ -1,0 +1,22 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>音字泥棒｜朝市の音字を見つけよう</title><link rel="stylesheet" href="./sandbox.css"></head>
+<body><main class="wrap"><header class="top"><a href="./index.html">← 物語へ戻る</a><h1>音字泥棒 <small>朝市の小さな生き物</small></h1><span>自由操作</span></header>
+<section class="prose"><p class="eyebrow">本物の音と、昔の音</p><h2>鐘が鳴る前に『カーン』が遊んでる。</h2><p>ミオは今朝初めてこの街へ来た。音字をつまむと、自分の意志で逃げたり、誰かについていったりする。古い字と今生まれた字。どんな違いがあるだろう？</p></section>
+<section class="workbench">
+ <div class="guide"><div><span class="guide-tag">遊び方</span><strong>音の文字をつまんで移動させよう</strong><p>PCはドラッグ、スマホは指で動かす。文字を選んで、地面をタップしてもOK。</p></div><div class="guide-buttons"><button id="howto" type="button" aria-expanded="false">操作の詳しい説明</button><button id="hint" type="button">ヒントを見る</button></div></div>
+ <div class="help-panel" id="howto-detail" hidden>まず光っている「カーン」を掴んでみよう。動かした文字は、置いた場所に残ったり、自分で違う場所へ戻ったりする。朝市の人や音字は何度でも試せる。「一手戻る」でやり直せるよ。</div>
+ <div class="help-panel hint-panel" id="hint-detail" role="status" aria-live="polite" hidden></div>
+ <div class="map" id="map" role="group" aria-label="音字を自由に動かせる朝市の風景">
+ <svg viewBox="0 0 960 520" preserveAspectRatio="none" class="backart" aria-hidden="true">
+  <rect width="960" height="520" fill="#284256"/><rect x="0" y="335" width="960" height="185" fill="#344957"/>
+  <path d="M0 130H300V356H0Z" fill="#607381"/><path d="M0 150L140 38L310 150Z" fill="#af775c"/><rect x="45" y="207" width="120" height="149" fill="#b39a73"/><path d="M50 235H155" stroke="#513c2f" stroke-width="7"/><path d="M175 170H282V356H175Z" fill="#3b4f64"/><rect x="390" y="178" width="200" height="178" fill="#69828b"/><path d="M371 178L487 70L600 178Z" fill="#a06b58"/><rect x="440" y="228" width="96" height="128" fill="#283d4d"/><rect x="655" y="117" width="290" height="238" fill="#405a70"/><path d="M655 117L800 25L945 117Z" fill="#876e67"/><path d="M766 158H838V288H766Z" fill="#d8bb89"/><circle cx="802" cy="178" r="28" fill="none" stroke="#f1cf88" stroke-width="9"/><path d="M800 215V260" stroke="#604b37" stroke-width="11"/><path d="M0 357H960" stroke="#d6b27a" stroke-width="12"/><path d="M0 455H960" stroke="#4d6572" stroke-width="22"/><path d="M40 500H930" stroke="#7b98a5" stroke-dasharray="25 35" stroke-width="7"/>
+  <g fill="#fce2b4" font-family="sans-serif" font-size="23" font-weight="800"><text x="72" y="188">パン屋</text><text x="427" y="200">トトの家</text><text x="730" y="100">鐘楼</text></g>
+ </svg>
+ <div class="scenery-labels" aria-hidden="true"><span>🥖 パン屋</span><span>🔔 鐘楼</span></div><div class="audience" id="audience" aria-label="音字の見世物を見に来たお客"><span class="spectator">😊</span><span class="spectator">😲</span><span class="spectator">😄</span><span class="spectator">😊</span></div><div id="actors" class="actors"></div><div id="glyphs" class="glyphs"></div>
+ <div class="reaction" id="reaction" role="status" aria-live="polite">トト「さっきの母ちゃんの字と同じだ。音が鳴ってなくても動くんだ」</div>
+ <div class="source" id="bell-source" style="left:83.5%;top:43%">実物の鐘</div><div class="source" style="left:21%;top:76%">パン屋のトレイ</div>
+ </div>
+ <div class="overview"><div><span>音字の発見</span><strong id="discovery-state">音字のひみつを探そう</strong></div><div><span>実際の鐘</span><strong id="bell-state">まだ鳴っていない</strong></div><div><span>パン屋</span><strong id="bakery-state">開店前</strong></div><div><span>トト</span><strong id="kid-state">不思議な音字に夢中</strong></div></div>
+ <div class="controls"><p>自由に動かし、何が起きるか試そう。「一手戻る」で別の置き方も確かめられます。文字が思った場所に行かないときは、別の文字にも触ってみて。</p><div><button id="reset" type="button">街を最初に戻す ↻</button><button id="replay" type="button">直前の配置を取り消す ↶</button></div></div>
+ <section class="activity" aria-label="街で実際に起こったこと"><h3>街で起きたこと</h3><ol id="log"><li>文字を動かすまで、街は静かだ。</li></ol></section>
+</section><p class="foot">音字は置いた場所に従うとは限りません。気に入った相手を見つけてみよう。</p></main>
+<script type="module" src="./sandbox.js"></script></body></html>
